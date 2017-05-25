@@ -1,0 +1,132 @@
+<!--
+<div id="top" class="row">
+	<div class="col-sm-9">
+		<form action="/maestro2/alunos/pesquisar" method="post">
+			<div class="input-group h2">
+				<input name="search" class="form-control" id="search" type="text"
+					placeholder="Pesquisar"
+					value="<?php echo $view_termo??null ;?>"> <span
+					class="input-group-btn">
+					<button class="btn btn-primary" type="submit">Pesquisar</button>
+				</span>
+			</div>
+		</form>
+	</div>
+-->
+
+	<div class="col-sm-3">
+		<a data-toggle="modal" data-target="#new_orcamento" class="btn btn-primary ">Novo Orçamento</a>
+	</div>
+</div>
+
+	<div id="list" class="row">
+		<div class="table-responsive col-md-12">
+			<table class="table table-striped" cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<th>Cliente</th>
+						<th>Produto</th>
+						<th>Data</th>
+						<th>Situação</th>
+            <th>Numero</th>
+						<th class="actions">Ações</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+
+					<?php foreach ( $orcamentos as $orcamento ) {?>
+						<tr>
+							<td><?php echo $orcamento->cnome; ?></td>    
+							<td><?php echo $orcamento->pnome; ?></td>
+							<td><?php echo $orcamento->orcdat; ?></td>
+							<td><?php echo $orcamento->situacao; ?></td>
+              <td><?php echo $orcamento->numero; ?></td>
+							
+							<td class="actions">
+								<a title="Editar" class="btn btn-warning btn-xs" href="<?php echo base_url() . 'clientes/edit_coment/' . $orcamento->ocod; ?>"> Editar</a>
+								<a title="Deletar" class="btn btn-danger btn-xs" href="<?php echo base_url() . 'clientes/deletar_coment/' . $orcamento->ocod; ?>" onclick="return confirm('Confirma a exclusão deste registro?')">Deletar</a>
+							</td>		
+
+						</tr>	 	 	  	
+						  	
+				 	<?php } ?>
+				</tbody>
+			</table>
+		</div>
+	</div>	
+
+</body>
+
+<!-- Modal de inserir-->
+<div class="modal fade" id="new_orcamento" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+  <div class="modal-dialog  bg-red"" role="document">
+    <div class="modal-content">
+      <div class="modal-header  bg-red"">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalLabel">Adicionar Orçamento</h4>
+       </div>
+
+      <div class="modal-body">
+        <?php echo form_open('orcamentos/inserir', 'id="form-orcamentos"'); ?>
+          <form action="" method="post" ENCTYPE="multipart/form-data">
+            <div class="row">
+              <div class="form-group col-md-5">
+                  <label for="cliente">Nome do cliente</label> <input type="text" class="form-control" id="cliente" name="cliente"
+                      placeholder="informe o nome da empresa/cliente"
+                      value="<?php echo isset($view_cliente) ? $view_cliente: '' ; ?>">
+              </div>     
+              <div class="form-group col-md-5">
+                  <label for="produto">Produto</label> <input type="text" class="form-control" id="produto" name="produto"
+                      placeholder="informe o produto principal"
+                      value="<?php echo isset($view_produto) ? $view_produto: '' ; ?>">
+              </div>
+          </div>
+          
+
+           <div class="row">
+               <div class="form-group col-md-5">
+                  <label for="orcdat">Data</label> <input type="text" class="form-control" id="orcdat" name="orcdat"
+                      placeholder="informe a data"
+                      value="<?php echo date('d/m/y') ; ?>">
+              </div>
+              <div class="form-group col-md-5">
+                  <label for="situacao">Situação</label> <input type="text" class="form-control" id="situacao" name="situacao"
+                      placeholder="informe a Situação"
+                      value="<?php echo isset($view_situacao) ? $view_situacao : '' ; ?>">
+              </div>
+          </div>
+
+          <div class="row">
+               <div class="form-group col-md-5">
+                  <label for="valor">Valor</label> <input type="text" class="form-control" id="valor" name="valor"
+                      placeholder="informe o valor"
+                      value="<?php echo isset($view_valor) ? $view_valor : '' ; ?>">
+              </div>
+              <div class="form-group col-md-5">
+                <label for="valor">ORÇ N°:</label><br/>
+                  <input type="text" class="form-control" name="numero" value="<?php echo $dados_orcamentos[0]->numero; ?>"/>
+                <div class="error"><?php echo form_error('orcdat'); ?></div>
+              </div>
+          </div>
+
+
+              <div class="row">
+              <div class="col-md-12">
+                  <input type="submit" href="http://localhost/sistema/orcamentos/inserir" 
+                  		class="btn btn-primary" name="btsalvar" value="Salvar " /> 
+                      <a data-dismiss="modal" class="btn btn-default">Cancelar</a>
+              </div>
+
+          <?php echo form_close(); ?>
+
+		</div>
+
+      </div>
+    </div>
+  </div>
+</div> <!-- /.modal -->
+
+
+
+</html>

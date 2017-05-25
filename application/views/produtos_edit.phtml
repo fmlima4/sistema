@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<body>
+	<?php echo form_open('produtos/atualizar', 'id="form-produtos"'); ?>
+ 
+	<input type="hidden" name="pcod" value="<?php echo $dados_produto[0]->pcod; ?>"/>
+ 	<div class="row">
+        <div class="form-group col-md-5">
+			<label for="pnome">Nome:</label><br/>
+			<input type="text" class="form-control" name="pnome" value="<?php echo $dados_produto[0]->pnome; ?>"/>
+			<div class="error"><?php echo form_error('pnome'); ?></div>
+		</div> 	
+		<div class="form-group col-md-5">
+			<label for="nome">descricao:</label><br/>
+			<input type="text" class="form-control" name="descricao" value="<?php echo $dados_produto[0]->descricao; ?>"/>
+			<div class="error"><?php echo form_error('descricao'); ?></div>
+		</div>	
+
+	</div>
+
+ 	<div class="row">
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-primary" name="btsalvar" value="Salvar" /> 
+                <a onClick="history.go(-1)" class="btn btn-default">Cancelar</a>
+        </div>
+    </div>
+ 
+	<?php echo form_close(); ?>
+</body>
+</html>

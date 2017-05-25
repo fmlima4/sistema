@@ -1,0 +1,59 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title><?php echo $titulo; ?></title>  
+</head>
+
+
+<body>
+    <?php echo form_open('clientes/inserir', 'id="form-pessoas"'); ?>
+    
+    <form action="" method="post" ENCTYPE="multipart/form-data">
+      <div class="row">
+        <div class="form-group col-md-5">
+            <label for="cnome">Nome da empresa</label> <input type="text" class="form-control" id="cnome" name="cnome"
+                placeholder="informe o nome da empresa"
+                value="<?php echo isset($view_cnome) ? $view_cnome: '' ; ?>">
+        </div>     
+        <div class="form-group col-md-5">
+            <label for="nome">Pessoa de contato</label> <input type="text" class="form-control" id="contato" name="contato"
+                placeholder="informe o nome do contato"
+                value="<?php echo isset($view_contato) ? $view_contato: '' ; ?>">
+        </div>
+    </div>
+    
+
+     <div class="row">
+        <div class="form-group col-md-5">
+            <label for="nome">Telefone</label> <input type="text" class="form-control" id="telefone" name="telefone"
+                placeholder="informe o telefone"
+                value="<?php echo isset($view_telefone) ? $view_telefone: '' ; ?>">
+        </div>
+        <div class="form-group col-md-5">
+            <label for="exampleInputEmail1">Email</label> <input type="text" class="form-control" id="email" name="email"
+                placeholder="informe um email valido"
+                value="<?php echo isset($view_email) ? $view_email : '' ; ?>">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-5">
+            <label for="cidade">Cidade</label> <input type="text" class="form-control" id="cidade" name="cidade"
+                placeholder="informe uma cidade"
+                value="<?php echo isset($view_cidade) ? $view_cidade : '' ; ?>">
+        </div>
+    </div>
+
+
+
+        <div class="row">
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-primary" name="btsalvar" value="Salvar" /> 
+                <a onClick="history.go(-1)" class="btn btn-default">Cancelar</a>
+        </div>
+
+    <?php echo form_close(); ?>
+</body>
+</html>

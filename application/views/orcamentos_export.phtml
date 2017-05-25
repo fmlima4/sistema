@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+
+<body>
+
+	<div id="list" class="row">
+		<div class="table-responsive col-md-12">
+			<table class="table table-striped" cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Cliente</th>
+						<th>Produto</th>
+						<th>Data</th>
+						<th>Situação</th>
+						<th>Valor</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+
+					<?php foreach ( $orcamentos as $orcamento ) {?>
+						<tr>
+							<td><?php echo $orcamento->ocod; ?></td> 
+							<td><?php echo $orcamento->cnome; ?></td>    
+							<td><?php echo $orcamento->pnome; ?></td>
+							<td><?php echo $orcamento->orcdat; ?></td>
+							<td><?php echo $orcamento->situacao; ?></td>
+							<td><?php echo $orcamento->valor; ?></td>
+						</tr>	 	 	  							  	
+				 	<?php } ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<body>
+	<?php echo form_open('representantes/atualizar', 'id="form-representantes"'); ?>
+ 
+	<input type="hidden" name="rcod" value="<?php echo $dados_representante[0]->rcod; ?>"/>
+ 	<div class="row">
+        <div class="form-group col-md-5">
+			<label for="rnome">Nome:</label><br/>
+			<input type="text" class="form-control" name="rnome" value="<?php echo $dados_representante[0]->rnome; ?>"/>
+			<div class="error"><?php echo form_error('rnome'); ?></div>
+		</div> 	
+		<div class="form-group col-md-5">
+			<label for="email">Email:</label><br/>
+			<input type="text" class="form-control" name="email" value="<?php echo $dados_representante[0]->email; ?>"/>
+			<div class="error"><?php echo form_error('email'); ?></div>
+		</div>	
+
+	</div>
+
+	<div class="row">
+        <div class="form-group col-md-5">
+			<label for="fone">Fone:</label><br/>
+			<input type="text" class="form-control" name="fone" value="<?php echo $dados_representante[0]->fone; ?>"/>
+			<div class="error"><?php echo form_error('fone'); ?></div>
+		</div> 	
+	</div>
+
+ 	<div class="row">
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-primary" name="btsalvar" value="Salvar" /> 
+                <a onClick="history.go(-1)" class="btn btn-default">Cancelar</a>
+        </div>
+    </div>
+ 
+	<?php echo form_close(); ?>
+</body>
+</html>

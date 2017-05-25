@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<script type="text/javascript">  
+		$(function(){
+		  	$("#cliente").autocomplete({
+		    	source: "clientes/get_cliente", // path to the method
+		     	appendTo: $("#new_coment")
+		  	});
+		}); 
+	</script>
+
+</head>
+
+<body>
+<div class="row" >
+	<form action="/sistema/comments/pesquisar1" method="post">
+		<div class="col-sm-3">
+			<div class="form-group">
+				<input name="search1" class="form-control" id="search1" type="text"
+					placeholder="Filtrar Cliente " value="<?php echo $view_termo1??null ;?>">  
+					<span class="input-group-btn"></span>
+			</div>
+		</div>
+
+		<div class="col-sm-3">
+			<div class="form-group">
+				<input name="search2" class="form-control" id="search2" type="text"
+					placeholder="Filtrar Texto    " value="<?php echo $view_termo2??null ;?>"> 
+					<span class="input-group-btn"></span>
+			</div>
+		</div>
+
+		<div class="col-sm-3">
+			<div class="form-group"">
+				<input name="search3" class="form-control" id="search" type="text"
+					placeholder="Filtrar Autor    " value="<?php echo $view_termo3??null ;?>"> 
+					<span class="input-group-btn"></span>
+			</div>
+		</div>
+
+		<div class="col-sm-1">
+			<button class="btn btn-primary btn-sm pull-left" type="submit">Filtrar</button>
+		</div>
+
+	</form>
+
+	<div class="col-sm-1">
+		<a data-toggle="modal" data-target="#new_coment"  class="btn btn-primary btn-sm ">Novo Comentario</a>
+	</div>
+
+	<div class="col-sm-1">
+    	<a title="orçamentos" class="btn btn-primary btn-sm pull-right fa fa-calendar" data-toggle="modal" data-target="#new_event"></a>
+ 	</div>
+	
+</div>
+
+	<div id="list" class="row">
+		<div class="table-responsive col-md-12">
+			<table class="table table-striped" cellspacing="0" cellpadding="0" id="historico">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Data</th>
+						<th>Cliente</th>
+						<th>Texto</th>
+						<th>Autor</th>
+						<!-- <th class="actions">Ações</th> -->
+					</tr>
+				</thead>
+				
+				<tbody>
+
+					<?php foreach ( $comentarios_cliente as $comentario) {?>
+						<tr>
+							<td><?php echo $comentario->comcod; ?></td>    
+							<td><?php echo $comentario->dat; ?></td>    
+							<td><?php echo $comentario->cnome; ?></td>
+							<td><?php echo $comentario->texto; ?></td>
+							<td><?php echo $comentario->username; ?></td>
+						<!--
+							<td class="actions">
+
+								<a title="Editar" class="btn btn-default btn-xs" href="<?php echo base_url() . 'clientes/inserir_coment/' . $comentario->comcod; ?>">Novo</a>
+								<a title="Editar" class="btn btn-warning btn-xs" href="<?php echo base_url() . 'clientes/edit_coment/' . $comentario->comcod; ?>"> Editar</a>
+								<a title="Deletar" class="btn btn-danger btn-xs" href="<?php echo base_url() . 'clientes/deletar_coment/' . $comentario->comcod; ?>" onclick="return confirm('Confirma a exclusão deste registro?')">Deletar</a>
+							</td>	
+						-->
+						</tr>	 	 	  	
+						  	
+				 	<?php } ?>
+				</tbody>
+			</table>
+			<h3><?php echo $this->session->flashdata('mensagem');?></h3>
+		</div>
+	</div>	
+
+	<div class="row">
+      <div class="col-sm-10" >
+        <?php echo $pagination; ?>
+      </div>
+      <div class="col-sm-2" >
+        <a class="btn btn-primary btn-sm" download="somedata.xls" href="#" 
+        onclick="return ExcellentExport.excel(this, 'historico', 'relatorio');">Export to Excel</a>
+      </div>
+
+    </div>
+
+</body>
+
+
+<!-- Modal de inserir-->
+<div class="modal fade" id="new_coment" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header  bg-red">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalLabel">Adicionar Comentario</h4>
+      </div>
+      <div class="modal-body">
+       
+ <?php echo form_open('comments/inserir_coment', 'id="form-comentarios"'); ?>
+    
+    <form action="" method="GET" ENCTYPE="multipart/form-data">
+      <div class="row">
+        <div class="form-group col-md-5">
+            <label for="data">Data</label> <input type="text" class="form-control "  id="dat" name="dat"
+                placeholder="informe uma data " 
+                value="<?php echo date('d/m/y') ; ?>">
+        </div>     
+
+        <div class="form-group col-md-5">
+            <label for="cliente">Cliente</label> <input type="text" class="form-control"  id="cliente" name="nomeC" 
+                placeholder="informe o nome do cliente"
+                value="<?php echo isset($view_cliente) ? $view_cliente: '' ; ?>">
+        </div>
+    </div>
+    
+
+     <div class="row">
+        <div class="form-group col-md-5">
+            <label for="comentario">Comentario</label><input type="text" class="form-control" id="texto" name="texto" placeholder="insira um comentario">
+        </div>
+
+
+         <div class="form-group col-md-5">
+            <label for="autor_show">Autor</label> <input type="text" class="form-control" id="autor_show" 
+            name="autor_show" readonly
+            value="<?php echo $_SESSION['usuario_logado']['username']; ?> "/>
+        </div>
+        
+        <div>
+            <input type="hidden" name="autor" value="<?php echo $_SESSION['usuario_logado']['id'];  ?>"/>
+        </div>
+        
+    </div>
+
+        <div class="row">
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-primary" name="btsalvar" value="Salvar"
+            href="http://localhost/sistema/comments/inserir_coment"/> 
+            <a data-dismiss="modal" class="btn btn-default">Cancelar</a>
+        </div>
+
+    <?php echo form_close(); ?>
+
+		</div>
+
+      </div>
+    </div>
+  </div>
+</div> <!-- /.modal -->
+
+
+<!-- Modal de inserir evento -->
+<div class="modal fade" id="new_event" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header  bg-red"">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalLabel">Adicionar evento</h4>
+      </div>
+      <div class="modal-body">
+       
+       <?php echo form_open('calendar2/new_event', 'id="form-events"'); ?>
+        
+        <form action="" method="post" ENCTYPE="multipart/form-data">
+          <div class="row">
+            <div class="form-group col-md-6">
+                <label for="nomeEvento">Nome tarefa</label> <input type="text" class="form-control" id="nomeEvento" name="nomeEvento" placeholder="informe o nome"
+                value="<?php echo isset($view_enome) ? $view_enome: '' ; ?>">
+            </div>  
+
+            <div class="form-group col-md-6">
+              <label for="user">Responsavel</label> <input type="text" class="form-control" id="user" 
+              name="user" readonly value="<?php echo $_SESSION['usuario_logado']['username']; ?> "/>
+            </div>
+          </div> 
+
+          <div class="row"> 
+
+            <div class="form-group col-md-6">
+              <div class="input-group date">
+                <input type="text" class="form-control date" id="inicio" name="inicio" placeholder="Data de inicio"
+                    value="<?php echo isset($view_inicio) ? $view_inicio: '' ; ?>">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-th"></span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row"> 
+            <div class="form-group col-md-6">
+                <label for="importancia">Prioridade</label> <input type="text" class="form-control" id="importancia" name="importancia" placeholder="informe a prioridade" value="<?php echo isset($view_importancia) ? $view_importancia: '' ; ?>">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+                <input href="http://localhost/sistema/calendar2/new_event"  type="submit" class="btn btn-primary" name="btsalvar" value="Salvar" /> 
+                    <a data-dismiss="modal" class="btn btn-default">Cancelar</a>
+            </div>
+
+        <?php echo form_close(); ?>
+        </div>    
+        </form>
+		  </div>
+
+      </div>
+    </div>
+  </div><!-- /.modal -->
+
+
+</html>

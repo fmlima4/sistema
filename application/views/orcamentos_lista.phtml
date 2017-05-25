@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	
+	<script type="text/javascript">  
+		$(function(){
+		  	$("#produto").autocomplete({
+		    	source: "produtos/get_produto", // path to the method
+		     	appendTo: $("#new_orcamento")
+		  	});
+		}); 
+	</script>
+
+	<script type="text/javascript">  
+		$(function(){
+		  	$("#cliente").autocomplete({
+		    	source: "clientes/get_cliente", // path to the method
+		     	appendTo: $("#new_orcamento")
+		  	});
+		}); 
+	</script>
+
+	<script type="text/javascript">  
+    $(function(){
+        $("#nomeEvento").autocomplete({
+          source: "clientes/get_cliente", // path to the method
+          appendTo: $("#new_event")
+        });
+    }); 
+  </script>
+
+	<script>
+	$(function(){
+	    $('.form-control.date').datepicker({
+	        format: 'yyyy-mm-dd',
+	        language: 'pt-BR',
+	        todayHighlight: true
+	    });
+	 });
+	</script>
+
+</head>
+
+<body>
+
+
+	<form action="/sistema/orcamentos/pesquisar1" method="post">
+		<div class="row">
+			<div class="col-sm-3">
+				<div lass="form-group">
+					<input name="search1" class="form-control" id="search" type="text"
+						placeholder="Filtrar Cliente" value="<?php echo $view_termo1??null ;?>"> 
+						<span class="input-group-btn"> </span>
+				</div>
+			</div>
+			
+			<div class="col-sm-3">
+				<div class="form-group">
+					<input name="search2" class="form-control" id="search" type="text"
+						placeholder="Filtrar Produto" value="<?php echo $view_termo2??null ;?>"> 
+						<span class="input-group-btn"></span>
+				</div>
+			</div>
+
+			<div class="col-sm-3">
+				<div class="form-group">
+					<input name="search3" class="form-control" id="search" type="text"
+						placeholder="Filtrar Situação" value="<?php echo $view_termo3??null ;?>"> 
+						<span  class="input-group-btn">	</span>
+				</div>
+			</div>
+
+			<div class="col-sm-1">
+				<button class="btn btn-primary btn-sm" type="submit">Filtrar</button>
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class="col-sm-3">
+				<div lass="form-group">
+					<input name="search4" class="form-control" id="search" type="text"
+						placeholder="Filtrar Representante" value="<?php echo $view_termo4??null ;?>"> 
+						<span class="input-group-btn"> </span>
+				</div>
+			</div>
+			
+			<div class="col-sm-3">
+				<div class="form-group">						
+					<div class="input-group date">
+    					<input type="text" class="form-control date" id="search" name="search5" 
+    					placeholder="Data Inicio" value="<?php echo $view_termo5??null ;?>"> 
+    					<div class="input-group-addon">
+       						 <span class="glyphicon glyphicon-th"></span>
+    					</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-3">
+				<div class="form-group">						
+					<div class="input-group date">
+    					<input type="text" class="form-control date" id="search" name="search6" 
+    					placeholder="Data Fim" value="<?php echo $view_termo6??null ;?>"> 
+    					<div class="input-group-addon">
+       						 <span class="glyphicon glyphicon-th"></span>
+    					</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-2">
+				<a data-toggle="modal" data-target="#new_orcamento" class="btn btn-primary btn-sm ">Novo Orçamento</a>
+			</div>
+
+			<div class="col-sm-1">
+    			<a title="orçamentos" class="btn btn-primary btn-sm  fa fa-calendar" data-toggle="modal" data-target="#new_event"></a>
+ 			</div>
+
+		</div>
+
+	</form>
+
+
+
+	<div id="list" class="row">
+		<div class="table-responsive col-md-12">
+			<table class="table table-striped" cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Cliente</th>
+						<th>Produto</th>
+						<th>Data</th>
+						<th>Situação</th>
+						<th>Valor</th>
+						<th>Numero</th>
+						<th class="actions">Ações</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+
+					<?php foreach ( $orcamentos as $orcamento ) {?>
+						<tr>
+							<td><?php echo $orcamento->ocod; ?></td> 
+							<td><?php echo $orcamento->cnome; ?></td>    
+							<td><?php echo $orcamento->pnome; ?></td>
+							<td><?php echo $orcamento->orcdat; ?></td>
+							<td><?php echo $orcamento->situacao; ?></td>
+							<td><?php echo $orcamento->valor; ?></td>
+							<td><?php echo $orcamento->numero; ?></td>
+							<td class="actions">
+								<a title="Editar" class="btn btn-warning btn-sm fa fa-pencil-square-o" href="<?php echo base_url() . 'orcamentos/editar/' . $orcamento->ocod; ?>"></a>
+								<a title="Deletar" class="btn btn-danger btn-sm fa fa-trash" href="<?php echo base_url() . 'orcamentos/deletar/' . $orcamento->ocod; ?>" onclick="return confirm('Confirma a exclusão deste registro?')"></a>
+							</td>		
+
+						</tr>	 	 	  	
+						  	
+				 	<?php } ?>
+				</tbody>
+			</table>
+
+			<h3><?php echo $this->session->flashdata('mensagem');?></h3>
+		
+		</div>
+
+	</div>
+
+
+	<div class="row">
+      <div class="col-sm-10" >
+        <?php echo $pagination; ?>
+      </div>
+      <div class="col-sm-2" >
+        <a class="btn btn-primary btn-sm" download="somedata.xls" href="#" 
+        onclick="return ExcellentExport.excel(this, 'orcamentos', 'relatorio');">.Excel</a>
+      </div>
+
+    </div>
+
+</body>
+
+<!-- Modal de inserir-->
+<div class="modal fade" id="new_orcamento" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+  <div class="modal-dialog  bg-red"" role="document">
+    <div class="modal-content">
+      <div class="modal-header  bg-red"">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalLabel">Adicionar Orçamento</h4>
+       </div>
+
+      <div class="modal-body">
+        <?php echo form_open('orcamentos/inserir', 'id="form-orcamentos"'); ?>
+          <form action="" method="GET" ENCTYPE="multipart/form-data">
+            <div class="row">
+              <div class="form-group col-md-5">
+                  <label for="cliente">Nome do cliente</label> <input type="text" class="form-control" id="cliente" name="nomeC"
+                      placeholder="informe o nome da empresa/cliente"
+                      value="<?php echo isset($view_cliente) ? $view_cliente: '' ; ?>">
+              </div>     
+
+              <div class="form-group col-md-5">
+                  <label for="produto">Produto</label> <input type="text" class="form-control" id="produto" 
+                  name="nomeP" placeholder="informe o produto principal"
+                      value="<?php echo isset($view_produto) ? $view_produto: '' ; ?>">
+              </div>
+          </div>
+          
+
+           <div class="row">
+               <div class="form-group col-md-5">
+                  <label for="orcdat">Data</label> <input type="text" class="form-control" id="orcdat" name="orcdat"
+                      placeholder="informe a data"
+                      value="<?php echo date('d/m/y') ; ?>">
+              </div>
+              <div class="form-group col-md-5">
+                  <label for="situacao">Situação</label> <input type="text" class="form-control" id="situacao" name="situacao" placeholder="informe a Situação"
+                      value="<?php echo isset($view_situacao) ? $view_situacao : '' ; ?>">
+              </div>
+          </div>
+
+          <div class="row">
+               	<div class="form-group col-md-5">
+                  <label for="valor">Valor</label> <input type="text" class="form-control" id="valor" name="valor"
+                      placeholder="informe o valor"
+                      value="<?php echo isset($view_valor) ? $view_valor : '' ; ?>">
+             	</div>
+
+             	<div class="form-group col-md-5">
+                  	<label for="numero">Numero</label> <input type="text" class="form-control" id="numero" name="numero"
+                    placeholder="informe o numero do orçamento"
+                    value="<?php echo isset($view_numero) ? $view_numero : '' ; ?>">
+             		</div>
+              
+          </div>
+
+
+              <div class="row">
+              <div class="col-md-12">
+                  <input type="submit" href="http://localhost/sistema/orcamentos/inserir" 
+                  		class="btn btn-primary" name="btsalvar" value="Salvar " /> 
+                      <a data-dismiss="modal" class="btn btn-default">Cancelar</a>
+              </div>
+
+          <?php echo form_close(); ?>
+
+		</div>
+
+      </div>
+    </div>
+  </div>
+</div> <!-- /.modal -->
+
+<!-- Modal de inserir evento -->
+<div class="modal fade" id="new_event" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header  bg-red"">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalLabel">Adicionar evento</h4>
+      </div>
+      <div class="modal-body">
+       
+       <?php echo form_open('calendar2/new_event', 'id="form-events"'); ?>
+        
+        <form action="" method="post" ENCTYPE="multipart/form-data">
+          <div class="row">
+            <div class="form-group col-md-6">
+                <label for="nomeEvento">Nome Cliente</label> <input type="text" class="form-control" id="nomeEvento" name="nomeEvento" placeholder="informe o nome do cliente"
+                value="<?php echo isset($view_enome) ? $view_enome: '' ; ?>">
+            </div>  
+
+            <div class="form-group col-md-6">
+              <label for="user">Responsavel</label> <input type="text" class="form-control" id="user" 
+              name="user" readonly value="<?php echo $_SESSION['usuario_logado']['username']; ?> "/>
+            </div>
+          </div> 
+
+          <div class="row"> 
+            <div class="form-group col-md-6">
+              <div class="input-group date">
+                <input type="text" class="form-control date" id="inicio" name="inicio" placeholder="Data de inicio"
+                    value="<?php echo isset($view_inicio) ? $view_inicio: '' ; ?>">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-th"></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="importancia">Prioridade</label> <input type="text" class="form-control" id="importancia" name="importancia" placeholder="informe a prioridade" value="<?php echo isset($view_importancia) ? $view_importancia: '' ; ?>">
+            </div>
+          </div>
+
+           <div class="row"> 
+            <div class="form-group col-md-12">
+              <label for="descricaoEvento">Descrição</label> <input type="text" class="form-control" id="descricaoEvento" name="descricaoEvento" placeholder="descreva a tarefa"
+                value="<?php echo isset($view_descricaoEvento) ? $view_descricaoEvento: '' ; ?>">
+            </div> 
+           </div>
+
+
+          <div class="row">
+            <div class="col-md-12">
+                <input href="http://localhost/sistema/calendar2/new_event"  type="submit" class="btn btn-primary" name="btsalvar" value="Salvar" /> 
+                    <a data-dismiss="modal" class="btn btn-default">Cancelar</a>
+            </div>
+
+        <?php echo form_close(); ?>
+        </div>    
+        </form>
+		  </div>
+
+      </div>
+    </div>
+  </div><!-- /.modal -->
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+	<meta charset="utf-8">
+
+</head>
+
+<body>
+
+	<div class="row" >
+		<form action="/sistema/produtos/pesquisar" method="post">
+			<div class="col-sm-9">
+				<div class="form-group">
+					<input name="search" class="form-control" id="search" type="text"
+						placeholder="Filtrar produto " value="<?php echo $view_termo??null ;?>">  
+						<span class="input-group-btn"></span>
+				</div>
+			</div>
+
+			<div class="col-sm-1">
+				<button class="btn btn-primary pull-left" type="submit">Filtrar</button>
+			</div>
+
+		</form>
+
+		<div class="col-sm-2">
+			<a data-toggle="modal" data-target="#new_produto" class="btn btn-primary ">Adicionar Produto</a>
+		</div>
+
+	</div>
+
+	<div id="list" class="row">
+		<div class="table-responsive col-md-12">
+			<table class="table table-striped" cellspacing="0" cellpadding="0" id="produtos">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nome</th>
+						<th>Descrição</th>
+						<th class="actions">Ações</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+
+					<?php foreach ( $produtos as $produto ) {?>
+						<tr>
+							<td><?php echo $produto->pcod; ?></td>    
+							<td><?php echo $produto->pnome; ?></td>    
+							<td><?php echo $produto->descricao; ?></td>
+							<td class="actions">
+								<a title="Editar" class="btn btn-warning btn-sm fa fa-pencil-square-o" href="<?php echo base_url() . 'produtos/editar/' . $produto->pcod; ?>"></a>
+								<a title="Deletar" class="btn btn-danger btn-sm fa fa-trash" href="<?php echo base_url() . 'produtos/deletar/' . $produto->pcod; ?>" onclick="return confirm('Confirma a exclusão deste registro?')"></a>
+							</td>		
+
+						</tr>	 	 	  	
+						  	
+				 	<?php } ?>
+				</tbody>
+			</table>
+				<h3><?php echo $this->session->flashdata('mensagem');?></h3>
+		</div>
+	</div>	
+
+	<div class="row">
+      <div class="col-sm-10" >
+        <?php echo $pagination; ?>
+      </div>
+      <div class="col-sm-2" >
+        <a class="btn btn-primary btn-sm" download="somedata.xls" href="#" 
+        onclick="return ExcellentExport.excel(this, 'produtos', 'relatorio');">Export to Excel</a>
+      </div>
+
+    </div>
+</body>
+
+
+
+<!-- Modal de inserir-->
+<div class="modal fade" id="new_produto" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header  bg-red"">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalLabel">Adicionar Produto</h4>
+      </div>
+      <div class="modal-body">
+       
+   <?php echo form_open('produtos/inserir', 'id="form-produtos"'); ?>
+    
+    <form action="" method="post" ENCTYPE="multipart/form-data">
+      <div class="row">
+        <div class="form-group col-md-5">
+            <label for="pnome">Nome do Produto</label> <input type="text" class="form-control" id="pnome" name="pnome"
+                placeholder="informe o nome do Produto"
+                value="<?php echo isset($view_pnome) ? $view_pnome: '' ; ?>">
+        </div>     
+        <div class="form-group col-md-5">
+            <label for="nome">Descrição</label> <input type="text" class="form-control" id="descricao" name="descricao"
+                placeholder="informe uma Descrição do produto"
+                value="<?php echo isset($view_descricao) ? $view_descricao: '' ; ?>">
+        </div>
+    </div>
+    
+        <div class="row">
+        <div class="col-md-12">
+            <input href="http://localhost/sistema/produtos/inserir"  type="submit" class="btn btn-primary" name="btsalvar" value="Salvar" /> 
+                <a data-dismiss="modal" class="btn btn-default">Cancelar</a>
+        </div>
+
+    <?php echo form_close(); ?>
+
+		</div>
+
+      </div>
+    </div>
+  </div>
+</div> <!-- /.modal -->
+
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+
+
+<head>
+    <title><?php echo $titulo; ?></title>  
+</head>
+
+
+<body>
+    <?php echo form_open('comments/inserir_coment', 'id="form-comentarios"'); ?>
+    
+    <form action="" method="post" ENCTYPE="multipart/form-data">
+      <div class="row">
+        <div class="form-group col-md-5">
+            <label for="nome">Data</label> <input type="text" class="form-control" id="dat" name="dat"
+                placeholder="informe uma data " 
+                value="<?php echo date('d/m/y') ; ?>">
+        </div>     
+        <div class="form-group col-md-5">
+            <label for="cliente">Codigo Cliente</label> <input type="text" class="form-control" id="cliente" name="cliente"
+               
+        </div>
+    </div>
+    
+
+     <div class="row">
+        <div class="form-group col-md-5">
+            <label for="comentario">Comentario</label><input type="text" class="form-control" id="texto" name="texto" placeholder="insira um comentario"
+                value="<?php echo isset($view_texto) ? $view_texto: '' ; ?>">
+        </div>
+
+
+         <div class="form-group col-md-5">
+            <label for="autor_show">Autor</label> <input type="text" class="form-control" id="autor_show" 
+            name="autor_show" readonly
+            value="<?php echo $_SESSION['usuario_logado']['username']; ?> "/>
+        </div>
+        
+        <div>
+            <input type="hidden" name="autor" value="<?php echo $_SESSION['usuario_logado']['id'];  ?>"/>
+        </div>
+        
+    </div>
+
+        <div class="row">
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-primary" name="btsalvar" value="Salvar" /> 
+                <a onClick="history.go(-1)" class="btn btn-default">Cancelar</a>
+        </div>
+
+    <?php echo form_close(); ?>
+</body>
+
+
+</html>

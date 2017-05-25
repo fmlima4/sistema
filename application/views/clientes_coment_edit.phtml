@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title><?php echo $titulo; ?></title>
+    <meta charset="UTF-8" />
+    
+</head>
+<body>
+	<?php echo form_open('clientes/edit_coment', 'id="edit_coment"'); ?>
+ 
+	<input type="hidden" name="comcod" value="<?php echo $dados_comentario[0]->comcod; ?>"/>
+ 	<div class="row">
+        <div class="form-group col-md-5">
+			<label for="dat">Data:</label><br/>
+			<input type="text" class="form-control" name="dat" value="<?php echo $dados_comentario[0]->dat; ?>"/>
+			<div class="error"><?php echo form_error('dat'); ?></div>
+		</div> 	
+		<div class="form-group col-md-5">
+			<label for="cliente">Cliente:</label><br/>
+			<input type="text" class="form-control" name="cliente"  readonly value="<?php echo $dados_comentario[0]->cliente; ?>"/>
+			<div class="error"><?php echo form_error('cliente'); ?></div>
+		</div>	
+
+	</div>
+
+	<div class="row">
+        <div class="form-group col-md-5">
+			<label for="texto">Texto:</label><br/>
+			<input type="text" class="form-control" name="texto" readonly value="<?php echo $dados_comentario[0]->texto; ?>"/>
+			<div class="error"><?php echo form_error('texto'); ?></div>
+		</div>
+		<div class="form-group col-md-5">
+			<label for="autor">Autor:</label><br/>
+			<input type="text" class="form-control" name="autor" readonly value="<?php echo $dados_comentario[0]->autor; ?>"/>
+			<div class="error"><?php echo form_error('autor'); ?></div>
+		</div> 
+	</div>
+
+ 	<div class="row">
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-primary" name="btsalvar" value="Salvar" /> 
+                <a onClick="history.go(-1)" class="btn btn-default">Cancelar</a>
+        </div>
+    </div>
+ 
+	<?php echo form_close(); ?>
+</body>
+</html>

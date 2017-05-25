@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    
+</head>
+<body>
+	<?php echo form_open('clientes/atualizar', 'id="form-clientes"'); ?>
+ 
+	<input type="hidden" name="ccod" value="<?php echo $dados_cliente[0]->ccod; ?>"/>
+ 	<div class="row">
+        <div class="form-group col-md-5">
+			<label for="cnome">Nome:</label><br/>
+			<input type="text" class="form-control" name="cnome" value="<?php echo $dados_cliente[0]->cnome; ?>"/>
+			<div class="error"><?php echo form_error('cnome'); ?></div>
+		</div> 	
+		<div class="form-group col-md-5">
+			<label for="nome">Contato:</label><br/>
+			<input type="text" class="form-control" name="contato" value="<?php echo $dados_cliente[0]->contato; ?>"/>
+			<div class="error"><?php echo form_error('contato'); ?></div>
+		</div>	
+
+	</div>
+
+	<div class="row">
+        <div class="form-group col-md-5">
+			<label for="nome">Telefone:</label><br/>
+			<input type="text" class="form-control" name="telefone" value="<?php echo $dados_cliente[0]->telefone; ?>"/>
+			<div class="error"><?php echo form_error('telefone'); ?></div>
+		</div>
+		<div class="form-group col-md-5">
+			<label for="emailc">Email:</label><br/>
+			<input type="text" class="form-control" name="emailc" value="<?php echo $dados_cliente[0]->emailc; ?>"/>
+			<div class="error"><?php echo form_error('emailc'); ?></div>
+		</div> 
+	</div>
+
+	<div class="row">
+		<div class="form-group col-md-5">
+			<label for="cidade">Cidade:</label><br/>
+			<input type="text" class="form-control" name="cidade" value="<?php echo $dados_cliente[0]->cidade; ?>"/>
+			<div class="error"><?php echo form_error('cidade'); ?></div>
+		</div> 
+	</div>
+
+
+ 	<div class="row">
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-primary" name="btsalvar" value="Salvar" /> 
+                <a onClick="history.go(-1)" class="btn btn-default">Cancelar</a>
+        </div>
+    </div>
+ 
+	<?php echo form_close(); ?>
+</body>
+</html>

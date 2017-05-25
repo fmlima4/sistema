@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<body>
+
+	<div id="list" class="row">
+		<div class="table-responsive col-md-12">
+			<table class="table table-striped" cellspacing="0" cellpadding="0">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Usuario</th>
+						<th>Cargo</th>						
+					</tr>
+				</thead>
+				
+				<tbody>
+
+					<?php foreach ( $usuarios as $usuario ) {?>
+						<tr>
+							<td><?php echo $usuario->id; ?></td>
+							<td><?php echo $usuario->username; ?></td>    
+							<td><?php echo $usuario->cargo; ?></td> 
+						</tr>	 	 	  	  	
+				 	<?php } ?>
+				</tbody>
+			</table>
+		</div>
+	</div>	
+
+</body>
+</html>

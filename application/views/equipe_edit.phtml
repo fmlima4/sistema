@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<body>
+	<?php echo form_open('equipe/atualizar', 'id="form-equipe"'); ?>
+ 
+	<input type="hidden" name="id" value="<?php echo $dados_usuario[0]->id; ?>"/>
+	
+ 	<div class="row">
+        <div class="form-group col-md-5">
+			<label for="username">Username:</label><br/>
+			<input type="text" class="form-control" name="username" value="<?php echo $dados_usuario[0]->username; ?>"/>
+			<div class="error"><?php echo form_error('username'); ?></div>
+		</div> 	
+		<div class="form-group col-md-5">
+			<label for="cargo">Cargo:</label><br/>
+			<input type="text" class="form-control" name="cargo" value="<?php echo $dados_usuario[0]->cargo; ?>"/>
+			<div class="error"><?php echo form_error('cargo'); ?></div>
+		</div>	
+	</div>
+
+	<div class="row">
+        <div class="form-group col-md-5">
+			<label for="password">Senha:</label><br/>
+			<input type="text" class="form-control" name="password" value="<?php echo $dados_usuario[0]->password; ?>"/>
+			<div class="error"><?php echo form_error('password'); ?></div>
+		</div> 	
+	</div>
+
+ 	<div class="row">
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-primary" name="btsalvar" value="Salvar" /> 
+                <a onClick="history.go(-1)" class="btn btn-default">Cancelar</a>
+        </div>
+    </div>
+ 
+	<?php echo form_close(); ?>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE>
+<html>
+	<body>	
+			<table  border-spacing: 0.5rem; text-align: justify;>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Empresa</th>
+						<th>Contato</th>
+						<th>Telefone</th>
+						<th>Email</th>
+						<th>Cidade</th>
+					</tr>
+				</thead>
+				
+				<tbody >
+
+					<?php foreach ( $clientes as $cliente ) {?>
+						<tr>
+							<td><?php echo $cliente->ccod; ?></td> 
+							<td><?php echo $cliente->cnome; ?></td>    
+							<td><?php echo $cliente->contato; ?></td>
+							<td><?php echo $cliente->telefone; ?></td>
+							<td><?php echo $cliente->email; ?></td>
+							<td><?php echo $cliente->cidade; ?> </td>
+						</tr>	 	 	  	
+				 	<?php } ?>
+				</tbody>
+			</table>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<body>
+	<?php echo form_open('orcamentos/atualizar', 'id="form-orcamentos"'); ?>
+	
+	<input type="hidden" name="ocod" value="<?php echo $dados_orcamentos[0]->ocod; ?>"/>
+	<input type="hidden" name="cliente" value="<?php echo $dados_orcamentos[0]->cliente; ?>"/>
+	<input type="hidden" name="produto" value="<?php echo $dados_orcamentos[0]->produto; ?>"/>
+ 	
+ 	<div class="row">
+        <div class="form-group col-md-5">
+			<label for="cliente">Cliente:</label><br/>
+			<input type="text" class="form-control" name="clienteNome"  value="<?php echo $dados_orcamentos[0]->cnome; ?>"/>
+			<div class="error"><?php echo form_error('cliente'); ?></div>
+		</div> 	
+		<div class="form-group col-md-5">
+			<label for="produto">Produto:</label><br/>
+			<input type="text" class="form-control" name="produtoNome" value="<?php echo $dados_orcamentos[0]->pnome; ?>"/>
+			<div class="error"><?php echo form_error('produto'); ?></div>
+		</div>	
+
+	</div>
+
+	<div class="row">
+        <div class="form-group col-md-5">
+			<label for="orcdat">data:</label><br/>
+			<input type="text" class="form-control" name="orcdat" value="<?php echo $dados_orcamentos[0]->orcdat; ?>"/>
+			<div class="error"><?php echo form_error('orcdat'); ?></div>
+		</div>
+		<div class="form-group col-md-5">
+			<label for="situacao">Situação:</label><br/>
+			<input type="text" class="form-control" name="situacao" value="<?php echo $dados_orcamentos[0]->situacao; ?>"/>
+			<div class="error"><?php echo form_error('situacao'); ?></div>
+		</div> 
+	</div>
+
+	<div class="row">
+        <div class="form-group col-md-5">
+			<label for="valor">Valor:</label><br/>
+			<input type="text" class="form-control" name="valor" value="<?php echo $dados_orcamentos[0]->valor; ?>"/>
+			<div class="error"><?php echo form_error('orcdat'); ?></div>
+		</div>
+		<div class="form-group col-md-5">
+			<label for="valor">ORÇ N°:</label><br/>
+			<input type="text" class="form-control" name="numero" 
+			value="<?php echo $dados_orcamentos[0]->numero; ?>"/>
+			<div class="error"><?php echo form_error('numero'); ?></div>
+		</div>
+	</div>
+
+
+ 	<div class="row">
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-primary" name="btsalvar" value="Salvar" /> 
+                <a onClick="history.go(-1)" class="btn btn-default">Cancelar</a>
+        </div>
+    </div>
+ 
+	<?php echo form_close(); ?>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<body>
+
+<div class="row">
+	<div class="col-sm-9">
+		<form action="/sistema/equipe/pesquisar" method="post">
+			<div class="form-group">
+				<input name="search" class="form-control" id="search" type="text"
+					placeholder="Pesquisar" value="<?php echo $view_termo??null ;?>"> 
+					<span class="input-group-btn"></span>
+			</div>
+	</div>
+
+	<div class="col-sm-1">
+		<button class="btn btn-primary " type="submit">Filtrar</button>
+	</div>
+
+		</form>
+	
+	<div class="col-sm-2">
+		<a href="http://localhost/sistema/equipe/inserir" class="btn btn-primary">Cadastrar Usuario</a>
+	</div>
+
+</div>
+
+	<div id="list" class="row">
+		<div class="table-responsive col-md-12">
+			<table class="table table-striped" cellspacing="0" cellpadding="0" id="equipe">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Usuario</th>
+						<th>Cargo</th>						
+						<th class="actions">Ações</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+
+					<?php foreach ( $usuarios as $usuario ) {?>
+						<tr>
+							<td><?php echo $usuario->id; ?></td>
+							<td><?php echo $usuario->username; ?></td>    
+							<td><?php echo $usuario->cargo; ?></td> 
+							<td class="actions">
+								<a title="Editar" class="btn btn-warning btn-sm fa fa-pencil-square-o" href="<?php echo base_url() . 'equipe/editar/' . $usuario->id; ?>"></a>
+								<a title="Deletar" class="btn btn-danger btn-sm fa fa-trash" href="<?php echo base_url() . 'equipe/deletar/' . $usuario->id; ?>" onclick="return confirm('Confirma a exclusão deste registro?')"></a>
+							</td>		
+						</tr>	 	 	  	  	
+				 	<?php } ?>
+				</tbody>
+			</table>
+		</div>
+	</div>	
+
+	<div class="row">
+      <div class="col-sm-10" >
+        <?php echo $pagination; ?>
+      </div>
+      <div class="col-sm-2" >
+        <a class="btn btn-primary btn-sm" download="somedata.xls" href="#" 
+        onclick="return ExcellentExport.excel(this, 'equipe', 'relatorio');">Export to Excel</a>
+      </div>
+
+    </div>
+
+
+</body>
+</html>

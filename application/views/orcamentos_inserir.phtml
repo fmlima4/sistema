@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title><?php echo $titulo; ?></title>  
+
+    <script type="text/javascript">  
+        $(function(){
+            $("#produto").autocomplete({
+                source: ' <?php echo base_url('produtos/get_produto'); ?>', // path to the method
+            });
+        }); 
+    </script>
+
+
+</head>
+
+
+<body>
+    <?php echo form_open('orcamentos/inserir', 'id="form-orcamentos"'); ?>
+    
+    <?php
+        $r = $_SERVER['REQUEST_URI']; 
+        $r = explode('/', $r);
+        $r = array_filter($r);
+        $r = array_merge($r, array()); 
+        $r = preg_replace('/\?.*/', '', $r);
+        $endofurl = $r[3];
+    ?>
+
+    <form action="" method="post" ENCTYPE="multipart/form-data">
+      <div class="row">
+       <div class="form-group col-md-5">
+            <label for="cliente">Codigo Cliente</label> <input type="text" class="form-control" id="cliente" name="nomeC" readonly  value="<?php echo $endofurl; ?>">
+        </div>   
+        <div class="form-group col-md-5">
+            <label for="autor_show">Autor</label> <input type="text" class="form-control" id="autor_show" 
+            name="autor_show" readonly
+            value="<?php echo $_SESSION['usuario_logado']['username']; ?> "/>
+        </div> 
+       
+    </div>
+
+     <div class="row">
+         <div class="form-group col-md-5">
+            <label for="orcdat">Data</label> <input type="text" class="form-control" id="orcdat" name="orcdat"
+                placeholder="informe a data"
+                value="<?php echo date('d/m/y') ; ?>">
+        </div>
+        <div class="form-group col-md-5">
+            <label for="situacao">Situação</label> <input type="text" class="form-control" id="situacao" name="situacao"
+                placeholder="informe a Situação"
+                value="<?php echo isset($view_situacao) ? $view_situacao : '' ; ?>">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-5">
+            <label for="produto">Produto</label> <input type="text" class="form-control" id="produto" name="nomeP"
+                placeholder="informe o produto principal"
+                value="<?php echo isset($view_produto) ? $view_produto: '' ; ?>">
+        </div>
+        <div class="form-group col-md-5">
+            <label for="valor">Valor</label> <input type="text" class="form-control" id="valor" name="valor"
+                placeholder="informe o valor"
+                value="<?php echo isset($view_valor) ? $view_valor : '' ; ?>">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-5">
+            <label for="numero">Numero</label> <input type="text" class="form-control" id="numero" name="numero"
+                placeholder="informe o numero do orçamento"
+                value="<?php echo isset($view_numero) ? $view_numero: '' ; ?>">
+        </div>
+    </div>
+
+        <div class="row">
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-primary" name="btsalvar" value="Salvar" /> 
+                <a onClick="history.go(-1)" class="btn btn-default">Cancelar</a>
+        </div>
+
+    <?php echo form_close(); ?>
+</body>
+</html>
