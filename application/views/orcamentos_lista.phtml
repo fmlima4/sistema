@@ -137,6 +137,7 @@
 						<th>Situação</th>
 						<th>Valor</th>
 						<th>Numero</th>
+            <th>Representante</th>
 						<th class="actions">Ações</th>
 					</tr>
 				</thead>
@@ -152,6 +153,7 @@
 							<td><?php echo $orcamento->situacao; ?></td>
 							<td><?php echo $orcamento->valor; ?></td>
 							<td><?php echo $orcamento->numero; ?></td>
+              <td><?php echo $orcamento->rnome; ?></td>
 							<td class="actions">
 								<a title="Editar" class="btn btn-warning btn-sm fa fa-pencil-square-o" href="<?php echo base_url() . 'orcamentos/editar/' . $orcamento->ocod; ?>"></a>
 								<a title="Deletar" class="btn btn-danger btn-sm fa fa-trash" href="<?php echo base_url() . 'orcamentos/deletar/' . $orcamento->ocod; ?>" onclick="return confirm('Confirma a exclusão deste registro?')"></a>
@@ -214,7 +216,7 @@
                <div class="form-group col-md-5">
                   <label for="orcdat">Data</label> <input type="text" class="form-control" id="orcdat" name="orcdat"
                       placeholder="informe a data"
-                      value="<?php echo date('d/m/y') ; ?>">
+                      value="<?php echo date('Y-m-d') ; ?>">
               </div>
               <div class="form-group col-md-5">
                   <label for="situacao">Situação</label> <input type="text" class="form-control" id="situacao" name="situacao" placeholder="informe a Situação"

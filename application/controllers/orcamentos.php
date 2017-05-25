@@ -69,8 +69,7 @@ class Orcamentos extends CI_Controller {
 		/* Executa a validação e caso houver erro chama a função index do controlador */
 		if ($this->form_validation->run() === FALSE) {
 
-			$this->session->set_flashdata('mensagem', "<div class='alert alert-danger'> Preencha todos os campos antes de salvar</div>");
-				redirect('orcamentos');
+			$this->template->load('layout', 'orcamentos_inserir.phtml');
 			
 			/* Senão, caso sucesso: */
 		} else {		
