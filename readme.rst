@@ -1,70 +1,199 @@
-###################
-What is CodeIgniter
-###################
+Clientes
+ 
+Parte principal do sistema, tudo começa por este modulo:
+A primeira coisa a ser feita é cadastrar um cliente informando os seguintes dados:
+•	Nome
+•	Pessoa de contato
+•	Telefone
+•	Email
+•	Cidade
+•	Representante (caso houver)
+ 
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
 
-*******************
-Release Information
-*******************
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
 
-**************************
-Changelog and New Features
-**************************
+Após o cadastro do cliente conforme acima surgem as seguintes opções:
+•	Comentar
+•	Orç
+•	Agendar
+•	Editar
+•	Deletar
+•	Exportar para excel
+Comentar:
+Opção utilizada para manter um histórico do que foi feito, falado, orçado, vendido Etc... com o cliente, esta opção também será utilizada para salvar dados complementares do cliente como endereço, CNPJ e qualquer outra informação que agilize o atendimento futuramente.
+ORÇ:
+Esta opção será utilizada para registrar o que fora orçado aos clientes, para registrar um novo orçamento deve-se informar: 
+•	Situação (quente, frio ....)
+•	Produto principal
+•	Valor
+•	Número do orçamento 
+Agendar:
+A função de agendar será utilizada afim de criar lembretes nas datas especificadas para realizar alguma ação relacionada ao cliente
+Editar:
+A função de editar serve para editar os dados básicos do cliente como nome, email, telefone 
+Deletar:
+Deletar serve para deletar clientes definitivamente
+Além disto nesta guia de clientes temos a opção de utilizar filtros de pesquisa para encontrar clientes, os seguintes filtros estão disponíveis**:
+•	Filtrar pelo nome do cliente
+•	Filtrar pela cidade
+•	Filtrar pelo representantes
+** é possível realizar qualquer combinação entre estes filtros afim de encontrar o resultado mais acurado
+** a busca é otimizada, o que quer dizer que por exemplo se for realizado uma busca pelo nome da empresa e o usuário informar os seguintes caracteres “tecno” serão retornadas todas as empresas que possuem “tecno” em seu nome.
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
 
-*******************
-Server Requirements
-*******************
+Exportar para Excel:
+	Esta função é utilizada para criar relatórios após a utilização dos filtros, por exemplo o vendedor deseja saber todos os clientes que o representante “X” atende ele filtra esses dados utilizando o filtro de representante e após gera o relatório em excel, o mesmo pode ser feito para encontrar todos os clientes da cidade “N”.
 
-PHP version 5.6 or newer is recommended.
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
 
-************
-Installation
-************
 
-Please see the `installation section <https://codeigniter.com/user_guide/installation/index.html>`_
-of the CodeIgniter User Guide.
 
-*******
-License
-*******
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
 
-*********
-Resources
-*********
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community IRC <https://webchat.freenode.net/?channels=%23codeigniter>`_
 
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
 
-***************
-Acknowledgement
-***************
 
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Guia Orçamentos
+ 
+Nesta guia temos acesso ao histórico de orçamentos, aqui vemos uma lista com informações como: cliente -> produto -> data -> situação -> valor -> numero
+Temos as seguintes opções:
+•	Editar
+•	Deletar
+Editar:
+Serve para editar dados do orçamento como situação, número e valor, afim de manter a integridade do sistema não é possível editar o produto e o cliente, caso seja necessário uma mudança como esta é indicado excluir o orçamento errôneo e criar um novo com o cliente e ou produto desejado.
+Deletar:
+Deletar serve para deletar orçamentos definitivamente.
+Além disto nesta guia de orçamentos temos a opção de utilizar filtros de pesquisa para encontrar orçamentos, os seguintes filtros estão disponíveis**:
+•	Filtrar pelo nome do cliente
+•	Filtrar pelo produto
+•	Filtrar pela situação
+** é possível realizar qualquer combinação entre estes filtros afim de encontrar o resultado mais acurado
+** a busca é otimizada o que quer dizer que por exemplo se for realizado uma busca pelo nome da empresa e o usuário informar os seguintes caracteres “tecno” serão retornadas todas as empresas que possuem “tecno” em seu nome.
+
+
+
+Exportar para Excel:
+	Esta função é utilizada para criar relatórios após a utilização dos filtros, por exemplo o vendedor deseja saber todos os orçamentos quentes para o mês de maio, ele filtra esses dados e após gera o relatório em excel.
+A partir da guia de orçamentos também é possível adicionar novos orçamentos* informando os seguintes dados:
+•	Nome do cliente
+•	Produto orçado
+•	Data
+•	Situação
+•	Valor
+•	Número do orçamento
+*Desde que o cliente desejado já tenha sido cadastrado.
+ 
+
+
+
+
+
+
+
+
+
+Guia histórico
+ 
+Nesta guia temos acesso ao histórico de informações com o cliente, aqui vemos uma lista com informações como: data -> cliente-> texto-> autor
+Além disto nesta guia de histórico temos a opção de utilizar filtros de pesquisa para encontrar orçamentos, os seguintes filtros estão disponíveis**:
+•	Filtrar pelo nome do cliente
+•	Filtrar pelo texto
+•	Filtrar pelo autor
+** é possível realizar qualquer combinação entre estes filtros afim de encontrar o resultado mais acurado
+** a busca é otimizada o que quer dizer que por exemplo se for realizado uma busca pelo nome da empresa e o usuário informar os seguintes caracteres “tecno” serão retornadas todas as empresas que possuem “tecno” em seu nome.
+Exportar para Excel:
+	Esta função é utilizada para criar relatórios após a utilização dos filtros, por exemplo o vendedor deseja saber todos os orçamentos quentes para o mês de maio, ele filtra esses dados e após gera o relatório em excel.
+A partir da guia de historico também é possível adicionar novos orçamentos* informando os seguintes dados:
+•	Nome do cliente
+•	Texto
+*Desde que o cliente desejado já tenha sido cadastrado.
+
+
+
+
+Guia produtos
+ 
+Nesta guia são exibidos os produtos cadastrados, esta funcionalidade é utilizada a fim de poder gerar relatórios de quais são os produtos mais orçados assim auxiliando na gestão de estoque, ações de marketing etc...
+A primeira coisa a ser feita é cadastrar um produto informando os seguintes dados:
+•	Nome
+•	Descrição 
+Após o cadastro do cliente conforme acima surgem as seguintes opções:
+•	Editar
+•	Deletar
+•	Exportar para excel
+Editar:
+	A função de editar serve para editar os dados do produto como nome e descrição
+Deletar:
+	Deletar serve para deletar produtos definitivamente
+Além disto nesta guia de produtos temos a opção de utilizar um filtro de pesquisa para encontrar produtos específicos. Os seguinte filtro esta disponível**:
+•	Filtrar pelo nome do produto
+** a busca é otimizada o que quer dizer que por exemplo se for realizado uma busca pelo nome do produto e o usuário informar os seguintes caracteres “CP” serão retornadas todos os produtos que possuem “tecno” em seu nome.
+Exportar para Excel:
+	Esta função é utilizada para criar relatórios após a utilização dos filtros.
+
+
+Guia representantes
+ 
+Nesta guia são exibidos os representantes cadastrados, esta funcionalidade é utilizada afim de poder gerar linkar clientes com representantes podendo gerar relatios por exemplo de quais clientes o representante “X” atende.
+A primeira coisa a ser feita é cadastrar um representante informando os seguintes dados:
+•	Nome
+•	Email
+•	fone
+Após o cadastro do cliente conforme acima surgem as seguintes opções:
+•	Editar
+•	Deletar
+•	Exportar para excel
+Editar:
+	A função de editar serve para editar os dados do representante como nome, email e fone
+Deletar:
+	Deletar serve para deletar representantes definitivamente
+Além disto nesta guia de representantes temos a opção de utilizar um filtro de pesquisa para encontrar representantes específicos. Os seguinte filtro esta disponível**:
+•	Filtrar pelo nome do representante
+** a busca é otimizada o que quer dizer que por exemplo se for realizado uma busca pelo nome do representante e o usuário informar os seguintes caracteres “ab” serão retornadas todos os representantes que possuem “ab” em seu nome.
+Exportar para Excel:
+	Esta função é utilizada para criar relatórios após a utilização dos filtros.
+
+Guia agenda
+ 
+Nesta guia são exibidos os lembretes criados, também é possível criar novos lembretes a partir desta tela sendo necessário informar os seguintes dados:
+ 
+
+É possível mudar a configuração de exibição para que seja exibido um calendário mensal, semanal e diário. 
+Também é possível editar e alterar a data das tarefas já criadas. 
+
+
+
+Guia Equipe
+ 
+Esta guia é usada para cadastrar novos usuário do sistema, para isso sendo necessário informar os seguintes dados:
+ 
+Editar:
+Serve para editar dados do usuário como nome, senha e cargo.
+Deletar:
+Deletar serve para deletar orçamentos definitivamente.
+Além disto nesta guia de orçamentos temos a opção de utilizar filtro de pesquisa para encontrar usuário, o seguinte filtros está disponível:
+•	Filtrar pelo nome do usuario
+** a busca é otimizada o que quer dizer que por exemplo se for realizado uma busca pelo nome da empresa e o usuário informar os seguintes caracteres “tecno” serão retornadas todas as empresas que possuem “tecno” em seu nome.
+
+
+Exportar para Excel:
+	Esta função é utilizada para criar relatórios, por exemplo o vendedor deseja saber todos os usuário ativos no sistema. 
+

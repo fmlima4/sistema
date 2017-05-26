@@ -5,7 +5,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
-  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
   <!-- REQUIRED JS SCRIPTS -->
 
   <!-- jQuery 3.1.1 -->
@@ -15,9 +17,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="<?php echo base_url("assets/bootstrap/js/bootstrap.min.js"); ?>"></script>
 
   <!-- jQuery UI 1.11.4 -->
+  <link rel="stylesheet" href= "<?php echo base_url(); ?>assets/plugins/jQueryUI/jquery-ui.css">
   <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 
 
   <title>Superar CRM</title>
   <!-- Tell the browser to be responsive to screen width -->
