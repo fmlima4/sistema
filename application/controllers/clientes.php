@@ -147,14 +147,16 @@ class Clientes extends CI_Controller {
 		}
 	
 	function deletar($ccod) {
-	 
+	 					
 		/* Executa a função deletar do modelo passando como parâmetro o id da pessoa */
-		if ($this->model->deletar($ccod)) {
-			$this->session->set_flashdata('mensagem', "<div class='alert alert-warning'> Cliente deletado com sucesso</div>");
+		$confirmacao = $this->model->deletar($ccod);
+		if ($confirmacao == 1) {
+				$this->session->set_flashdata('mensagem', "<div class='alert alert-warning'> Cliente deletado com sucesso</div>");
 			redirect('clientes');
-		} else {
-			$this->session->set_flashdata('mensagem', "<div class='alert alert-danger'> Erro ao deletar cliente</div>");
-		}
+			} else {
+				$this->session->set_flashdata('mensagem', "<div class='alert alert-danger'> Erro ao deletar cliente</div>");
+					redirect('clientes');
+			}
 	}
 
 	function inserir_coment(){

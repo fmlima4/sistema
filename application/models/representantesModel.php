@@ -40,8 +40,27 @@ class representantesModel extends CI_Model {
 	}
 	 
 	function deletar($rcod) {
-	    $this->db->where('rcod', $rcod);
-	    return $this->db->delete('representantes');
+    $this->db->where('rcod', $rcod);    
+
+    $db_debug = $this->db->db_debug; //salve a configuração
+    $this->db->db_debug = FALSE; //desabilita o debug para consultas
+
+    if ( !$this->db->delete('representantes') )
+    {
+        $error = $this->db->error();
+
+        $this->session->set_flashdata('mensagemErro', "<div class='alert alert-warning'> Representante nao pode ser deletado pois existe um cliente referenciado !!</div>");
+
+        $this->db->db_debug = $db_debug; //restaure a configuração de debug
+
+    }
+
+    if($this->db->affected_rows() == 1){
+		return 1;
+		} else{
+		return 0;
+		}
+    
 	}
 
 	public function search(){

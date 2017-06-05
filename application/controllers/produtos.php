@@ -145,11 +145,13 @@ class Produtos extends CI_Controller {
 	function deletar($pcod) {
 	 					
 		/* Executa a função deletar do modelo passando como parâmetro o id da pessoa */
-		if ($this->model->deletar($pcod)) {
+		$confirmacao = $this->model->deletar($pcod);
+		if ($confirmacao == 1) {
 				$this->session->set_flashdata('mensagem', "<div class='alert alert-warning'> Produto deletado com sucesso</div>");
 				redirect('produtos');
 			} else {
 				$this->session->set_flashdata('mensagem', "<div class='alert alert-danger'> Erro ao deletar Produto</div>");
+				redirect('produtos');
 			}
 	}
 

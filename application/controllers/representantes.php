@@ -149,18 +149,20 @@ class Representantes extends CI_Controller {
 				$this->session->set_flashdata('mensagem', "<div class='alert alert-danger'> Erro ao editar Representante</div>");
 			}
 		}
-	
+
 	function deletar($rcod) {
 	 					
 		/* Executa a função deletar do modelo passando como parâmetro o id da pessoa */
-		if ($this->model->deletar($rcod)) {
+		$confirmacao = $this->model->deletar($rcod);
+		if ($confirmacao == 1) {
 				$this->session->set_flashdata('mensagem', "<div class='alert alert-warning'> Representante deletado com sucesso</div>");
 				redirect('representantes');
 			} else {
 				$this->session->set_flashdata('mensagem', "<div class='alert alert-danger'> Erro ao deletar Representante </div>");
+				redirect('representantes');
 			}
 	}
-
+	
     public function pesquisar() {
 
 		$this->template->set('title', 'Resultado');

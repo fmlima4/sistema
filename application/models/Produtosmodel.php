@@ -49,14 +49,17 @@ class produtosModel extends CI_Model {
     {
         $error = $this->db->error();
 
-        $this->session->set_flashdata('mensagemErro', "<div class='alert alert-warning'> Produto cagado</div>");
+        $this->session->set_flashdata('mensagemErro', "<div class='alert alert-warning'> Produto nao pode ser deletado pois existe um orçamento referenciado !!</div>");
 
         $this->db->db_debug = $db_debug; //restaure a configuração de debug
 
-        return 1;
     }
 
-    return $this->db->affected_rows();
+    if($this->db->affected_rows() == 1){
+		return 1;
+		} else{
+		return 0;
+		}
     
 	}
 
