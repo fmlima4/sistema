@@ -40,8 +40,24 @@ class produtosModel extends CI_Model {
 	}
 	 
 	function deletar($pcod) {
-	    $this->db->where('pcod', $pcod);
-	    return $this->db->delete('produtos');
+    $this->db->where('pcod', $pcod);    
+
+    $db_debug = $this->db->db_debug; //salve a configuração
+    $this->db->db_debug = FALSE; //desabilita o debug para consultas
+
+    if ( !$this->db->delete('produtos') )
+    {
+        $error = $this->db->error();
+
+        $this->session->set_flashdata('mensagemErro', "<div class='alert alert-warning'> Produto cagado</div>");
+
+        $this->db->db_debug = $db_debug; //restaure a configuração de debug
+
+        return 1;
+    }
+
+    return $this->db->affected_rows();
+    
 	}
 
 	public function search(){

@@ -57,7 +57,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     });
 
 </script>
- 
 
 </head>
 <!--
@@ -460,13 +459,11 @@ desired effect
 <script src="<?php echo base_url("assets/plugins/fullcalendar/fullcalendar.min.js"); ?>"></script>
 
 
+
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
      fixed layout. -->
-
-<!-- EXCEL -->
-<script type="text/javascript" src='<?php echo base_url('assets/excel/excellentexport.min.js'); ?>'></script>
 
 <!-- DATAPICKER -->
 <link href=' <?php echo base_url('assets/plugins/datepicker/datepicker3.css'); ?>' rel='stylesheet' />
@@ -474,6 +471,9 @@ desired effect
 </script>
 <script type="text/javascript" src='<?php echo base_url('assets/plugins/datepicker/locales/bootstrap-datepicker.pt-BR.js'); ?>'>
 </script>
+
+<!-- EXCEL -->
+<script type="text/javascript" src='<?php echo base_url('assets/excel/excellentexport.min.js'); ?>'></script>
 
 </body>
 </html>

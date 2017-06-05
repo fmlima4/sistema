@@ -7,7 +7,7 @@ class calendar2Model extends CI_Model {
 	}
 
 	public function get_events(){
-		$this->db->select('idevento id,cnome title, inicio start, fim end');
+		$this->db->select('idevento id,cnome title, inicio start, fim end,descricaoEvento text, user autor');
 		$this->db->from('eventos');
 		$this->db->join('clientes','clientes.ccod = eventos.nomeEvento');
 

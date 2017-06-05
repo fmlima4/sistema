@@ -28,6 +28,13 @@ class orcamentosModel extends CI_Model {
 	    return $query->result();
 	}
 
+	function soma(){
+		$this->db->select('valor');
+		$this->db->from('orcamentos');
+		$query = $this->db->get();
+	   	return $query->result();
+	}
+
 	function countAll(){
 		return $this->db->count_all($this->table);
 	}

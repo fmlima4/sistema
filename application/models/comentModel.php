@@ -61,6 +61,7 @@ class comentModel extends CI_Model {
 	    	$this->db->join('clientes', 'clientes.ccod = comentarios.cliente');
 			$this->db->join('users', 'users.id = comentarios.autor');
 			$query = $this->db->get(); 
+			
 		}
 
 		if(empty($termo2) and empty($termo3)  and !empty($termo1)){

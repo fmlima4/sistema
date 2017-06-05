@@ -5,6 +5,7 @@
 	</div>
 </div>
 
+
 <script>
 
 
@@ -13,9 +14,10 @@ $(document).ready(function() {
 
   $.post('<?php echo base_url();?>calendar2/getEvents', 
   function(data){
-  //alert(data);
+  alert(data);
 
     $('#calendar').fullCalendar({
+      locale: 'pt-br',
       header: {
         left: 'prev,next today',
         center: 'title',
@@ -32,6 +34,8 @@ $(document).ready(function() {
         var id = event.id;
         var fi = event.start.format();
         var ff = event.end.format();
+        var txt = event.text.format();
+        var autor = event.autor.format();
 
         $.post("<?php echo base_url();?>calendar2/updateEvents",
         {
@@ -73,7 +77,7 @@ $(document).ready(function() {
       //   $('#calendar').fullCalendar('removeEvents',event.id);
       //  }
 
-      eventRender: function(event, element){
+      eventRender: function(event, element,data){
         var el = element.html();
         element.html("<div style='width:90%;float:left;'>" + el + "</div><div class='closeee' style='color:red; text-align:right;'>X</div>");
 
@@ -101,7 +105,9 @@ $(document).ready(function() {
 
       eventClick: function(event, jsEvent, view){
         $('#mtitulo').html(event.title);
-        $('#autor').val(event.id);
+        $('#autor').html(event.autor);
+        $('#inicio').html(event.fi);
+        $('#descricaoEvento').html(event.txt);
         $('#modalEvento').modal();
       },
 

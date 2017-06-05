@@ -43,6 +43,8 @@ class Orcamentos extends CI_Controller {
 
 		$offset = ($this->uri->segment(3)) ? $this->uri->segment(3):0;
 		$data['orcamentos'] = $this->model->listar('ocod','asc', $config['per_page'],$offset);
+		$data['total'] = $this->model->soma();
+
 		$this->template->load('layout', 'orcamentos_lista.phtml', $data);
 	}
 
@@ -146,6 +148,7 @@ class Orcamentos extends CI_Controller {
 	 					
 		/* Executa a função deletar do modelo passando como parâmetro o id da pessoa */
 		if ($this->model->deletar($ocod)) {
+		
 				$this->session->set_flashdata('mensagem', "<div class='alert alert-warning'> Orçamento deletado com sucesso</div>");
 				redirect('orcamentos');
 			} else {

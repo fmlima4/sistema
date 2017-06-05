@@ -118,16 +118,13 @@
 			<div class="col-sm-1">
     			<a title="orçamentos" class="btn btn-primary btn-sm  fa fa-calendar" data-toggle="modal" data-target="#new_event"></a>
  			</div>
-
+      
 		</div>
-
 	</form>
-
-
 
 	<div id="list" class="row">
 		<div class="table-responsive col-md-12">
-			<table class="table table-striped" cellspacing="0" cellpadding="0">
+			<table class="table table-striped" cellspacing="0" cellpadding="0" id="orcamentos">
 				<thead>
 					<tr>
 						<th>ID</th>
@@ -143,7 +140,7 @@
 				</thead>
 				
 				<tbody>
-
+        <?php $total = 0; ?>
 					<?php foreach ( $orcamentos as $orcamento ) {?>
 						<tr>
 							<td><?php echo $orcamento->ocod; ?></td> 
@@ -157,18 +154,29 @@
 							<td class="actions">
 								<a title="Editar" class="btn btn-warning btn-sm fa fa-pencil-square-o" href="<?php echo base_url() . 'orcamentos/editar/' . $orcamento->ocod; ?>"></a>
 								<a title="Deletar" class="btn btn-danger btn-sm fa fa-trash" href="<?php echo base_url() . 'orcamentos/deletar/' . $orcamento->ocod; ?>" onclick="return confirm('Confirma a exclusão deste registro?')"></a>
-							</td>		
+							</td>	
+
+              <?php $total += $orcamento->valor; ?>
 
 						</tr>	 	 	  	
 						  	
 				 	<?php } ?>
 				</tbody>
+        <tfoot>
+          <tr>
+            <th>Valor Total: </th>    
+            <th> </th>  
+            <th></th>  
+            <th> </th>  
+            <th> </th>  
+            <th> <?php  echo $total;  ?> </th>  
+          </tr>
+        </tfoot>
 			</table>
 
 			<h3><?php echo $this->session->flashdata('mensagem');?></h3>
 		
 		</div>
-
 	</div>
 
 
@@ -177,11 +185,10 @@
         <?php echo $pagination; ?>
       </div>
       <div class="col-sm-2" >
-        <a class="btn btn-primary btn-sm" download="somedata.xls" href="#" 
-        onclick="return ExcellentExport.excel(this, 'orcamentos', 'relatorio');">.Excel</a>
+        <a class="btn btn-primary btn-sm" download="relatorio orcamentos.xls" href="#" 
+        onclick="return ExcellentExport.excel(this, 'orcamentos', 'relatorio');">Export to Excel</a>
       </div>
-
-    </div>
+  </div>
 
 </body>
 
