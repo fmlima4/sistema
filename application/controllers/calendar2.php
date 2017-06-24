@@ -26,6 +26,44 @@ class Calendar2 extends CI_controller{
 		echo json_encode($r);
 	}
 
+	public function updateEvents2(){
+		$this->load->library('form_validation');
+	 
+		/* Define as tags onde a mensagem de erro será exibida na página */
+		$this->form_validation->set_error_delimiters('<span>', '</span>');
+	 
+		/* Aqui estou definindo as regras de validação do formulário, assim como 
+		   na função inserir do controlador, porém estou mudando a forma de escrita */
+		$this->form_validation->set_rules('mtitulo', 'Nome', 'required|max_length[40]');
+		$this->form_validation->set_rules('autor', 'Autor', 'trim|required|max_length[100]');
+		$this->form_validation->set_rules('inicioEdit', 'Data', 'trim|required|max_length[20]');
+		$this->form_validation->set_rules('importanciaEdit', 'importancia', 'trim|required|max_length[20]');
+		$this->form_validation->set_rules('descricaoEventoEdit', 'Descricao', 'trim|required|max_length[60]');
+	
+		/* Executa a validação e caso houver erro chama a função editar do controlador novamente */
+		if ($this->form_validation->run() === FALSE) {
+	            	$this->session->set_flashdata('mensagem', "<div class='alert alert-danger'> preencha todos os campos antes de salvar </div>");
+				redirect('clientes');
+		} else 
+			/* Senão obtém os dados do formulário */
+			$data['idevento'] = $this->input->post('nomeEvento');
+			$data['nomeEvento'] = $this->input->post('mtitulo');
+			$data['inicio'] = $this->input->post('inicioEdit');
+			$data['fim'] = date('Y-m-d', strtotime($this->input->post('inicioEdit'). ' + 1 day'));
+			$data['user'] = $this->input->post('autor');	
+			$data['importancia'] = $this->input->post('importanciaEdit');	
+			$data['descricaoEvento'] = $this->input->post('descricaoEventoEdit');
+	 
+			/* Executa a função atualizar do modelo passando como parâmetro os dados obtidos do formulário */
+			if ($this->model->updateEvents2($data)) {
+				$this->session->set_flashdata('mensagem', "<div class='alert alert-success'> Cliente editado com sucesso</div>");
+				redirect('clientes');
+			} else {
+				$this->session->set_flashdata('mensagem', "<div class='alert alert-danger'> Erro ao editar cliente</div>");
+			}
+		}
+	
+
 	public function deleteEvents(){
 		$id = $this->input->post('id');
 		$r = $this->model->deleteEvents($id);
@@ -61,7 +99,7 @@ class Calendar2 extends CI_controller{
 			$data['fim'] = date('Y-m-d', strtotime($this->input->post('inicio'). ' + 1 day'));
 			$data['user'] = $this->input->post('user');	
 			$data['importancia'] = $this->input->post('importancia');	
-			$data['importancia'] = $this->input->post('descricaoEvento');	
+			$data['descricaoEvento'] = $this->input->post('descricaoEvento');	
 			
 			
 			/* Chama a função inserir do modelo */
@@ -70,6 +108,7 @@ class Calendar2 extends CI_controller{
 				redirect('clientes');
 			} else {
 				$this->session->set_flashdata('mensagem', "<div class='alert alert-danger'> Erro ao salvar Lembrete </div>");
+				redirect('clientes');
 			}
 
 		}

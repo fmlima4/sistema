@@ -34,9 +34,7 @@ $(document).ready(function() {
         var id = event.id;
         var fi = event.start.format();
         var ff = event.end.format();
-        var txt = event.text.format();
-        var autor = event.autor.format();
-
+     
         $.post("<?php echo base_url();?>calendar2/updateEvents",
         {
           id:id,
@@ -104,10 +102,12 @@ $(document).ready(function() {
       },
 
       eventClick: function(event, jsEvent, view){
+        $('#id').html(event.id);
         $('#mtitulo').html(event.title);
         $('#autor').html(event.autor);
-        $('#inicio').html(event.fi);
-        $('#descricaoEvento').html(event.txt);
+        $('#inicioEdit').val(event.start);
+        $('#importanciaEdit').val(event.impor);
+        $('#descricaoEventoEdit').val(event.text);
         $('#modalEvento').modal();
       },
 
@@ -115,7 +115,17 @@ $(document).ready(function() {
   });
 });
 
+$(function(){
+      $('.form-control.date').datepicker({
+          format: 'yyyy-mm-dd',
+          language: 'pt-BR',
+          todayHighlight: true
+      });
+   });
+
 </script>
+
+
 
 </head>
 
@@ -177,7 +187,7 @@ $(document).ready(function() {
 
           <div class="row">
             <div class="col-md-12">
-                <input href="http://localhost/sistema/calendar2/new_event"  type="submit" class="btn btn-primary" name="btsalvar" value="Salvar" /> 
+                <input  type="submit" class="btn btn-primary" name="btsalvar" value="Salvar" /> 
                     <a data-dismiss="modal" class="btn btn-default">Cancelar</a>
             </div>
 
@@ -185,7 +195,6 @@ $(document).ready(function() {
         </div>    
         </form>
       </div>
-
       </div>
     </div>
   </div><!-- /.modal -->
@@ -202,6 +211,10 @@ $(document).ready(function() {
     </div>
 
     <div class="modal-body">
+    <?php echo form_open('calendar2/updateEvents2', 'id="form-events-update"'); ?>
+     <form action="" method="post" ENCTYPE="multipart/form-data">
+
+     <input type="hidden" name="id"/>
 
       <div class="row">
         <div class="form-group col-md-6">
@@ -218,7 +231,7 @@ $(document).ready(function() {
       <div class="row"> 
         <div class="form-group col-md-6">
           <div class="input-group date">
-            <input type="text" class="form-control date" id="inicio" name="inicio"/>
+            <input type="text" class="form-control date" id="inicioEdit" />
             <div class="input-group-addon">
               <span class="glyphicon glyphicon-th"></span>
             </div>
@@ -227,14 +240,14 @@ $(document).ready(function() {
 
         <div class="form-group col-md-6">
             <label for="importancia">Prioridade</label> 
-            <input type="text" class="form-control" id="importancia" name="importancia"/>
+            <input type="text" class="form-control" id="importanciaEdit" />
         </div>
       </div>
 
        <div class="row"> 
         <div class="form-group col-md-12">
           <label for="descricaoEvento">Descrição</label> 
-          <input type="text" class="form-control" id="descricaoEvento" name="descricaoEvento"/>
+          <input type="text" class="form-control" id="descricaoEventoEdit" />
         </div> 
        </div>
 
@@ -242,9 +255,11 @@ $(document).ready(function() {
 
     <div class="modal-footer">
       <button type="button" class="btn btn-default" id="closeM" data-dismiss="modal">Cancelar</button>
-      <button type="button" class="btn btn-danger" id="btnGuardar">Guardar</button>
+      <input  type="submit" class="btn btn-primary" name="btsalvar" value="Atualizar" />
     </div>
     </div>
+    <?php echo form_close(); ?>
+    </form>
   </div>
 </div>
 <!-- /.modal -->
