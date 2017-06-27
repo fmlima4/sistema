@@ -14,6 +14,25 @@
 		}); 
 	</script>
 
+  <script type="text/javascript">  
+    $(function(){
+        $("#nomeEvento").autocomplete({
+          source: "clientes/get_cliente", // path to the method
+          appendTo: $("#new_event")
+        });
+    }); 
+  </script>
+
+  <script>
+  $(function(){
+      $('.form-control.date').datepicker({
+          format: 'yyyy-mm-dd',
+          language: 'pt-BR',
+          todayHighlight: true
+      });
+   });
+  </script>
+
 </head>
 
 <body>
@@ -129,13 +148,13 @@
       <div class="row">
         <div class="form-group col-md-5">
             <label for="data">Data</label> <input type="text" class="form-control "  id="dat" name="dat"
-                placeholder="informe uma data " 
+                placeholder="informe uma data " required
                 value="<?php echo date('d/m/y') ; ?>">
         </div>     
 
         <div class="form-group col-md-5">
             <label for="cliente">Cliente</label> <input type="text" class="form-control"  id="cliente" name="nomeC" 
-                placeholder="informe o nome do cliente"
+                placeholder="informe o nome do cliente" required
                 value="<?php echo isset($view_cliente) ? $view_cliente: '' ; ?>">
         </div>
     </div>
@@ -143,7 +162,8 @@
 
      <div class="row">
         <div class="form-group col-md-5">
-            <label for="comentario">Comentario</label><input type="text" class="form-control" id="texto" name="texto" placeholder="insira um comentario">
+            <label for="comentario">Comentario</label><input type="text" class="form-control" 
+            id="texto" name="texto" placeholder="insira um comentario" required>
         </div>
 
 
@@ -176,6 +196,7 @@
 </div> <!-- /.modal -->
 
 
+
 <!-- Modal de inserir evento -->
 <div class="modal fade" id="new_event" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
   <div class="modal-dialog" role="document">
@@ -191,7 +212,7 @@
         <form action="" method="post" ENCTYPE="multipart/form-data">
           <div class="row">
             <div class="form-group col-md-6">
-                <label for="nomeEvento">Nome tarefa</label> <input type="text" class="form-control" id="nomeEvento" name="nomeEvento" placeholder="informe o nome"
+                <label for="nomeEvento">Nome Cliente</label> <input type="text" class="form-control" id="nomeEvento" name="nomeEvento" placeholder="informe o nome do cliente" required
                 value="<?php echo isset($view_enome) ? $view_enome: '' ; ?>">
             </div>  
 
@@ -202,24 +223,36 @@
           </div> 
 
           <div class="row"> 
-
+            <div class="col-md-6">
+              <label for="inicio">Data</label>
+            </div>
+            <div class="col-md-6">
+              <label for="importancia">Prioridade</label>
+            </div>
             <div class="form-group col-md-6">
               <div class="input-group date">
-                <input type="text" class="form-control date" id="inicio" name="inicio" placeholder="Data de inicio"
-                    value="<?php echo isset($view_inicio) ? $view_inicio: '' ; ?>">
+                <input type="text" class="form-control date" id="inicio" name="inicio" required
+                placeholder="Data de inicio"
+                value="<?php echo isset($view_inicio) ? $view_inicio: '' ; ?>">
                 <div class="input-group-addon">
                   <span class="glyphicon glyphicon-th"></span>
                 </div>
               </div>
             </div>
-
-          </div>
-
-          <div class="row"> 
             <div class="form-group col-md-6">
-                <label for="importancia">Prioridade</label> <input type="text" class="form-control" id="importancia" name="importancia" placeholder="informe a prioridade" value="<?php echo isset($view_importancia) ? $view_importancia: '' ; ?>">
+                 <input type="text" class="form-control" id="importancia" name="importancia" required
+                  placeholder="informe a prioridade" 
+                  value="<?php echo isset($view_importancia) ? $view_importancia: '' ; ?>">
             </div>
           </div>
+
+           <div class="row"> 
+            <div class="form-group col-md-12">
+              <label for="descricaoEvento">Descrição</label> <input type="text" class="form-control" id="descricaoEvento" name="descricaoEvento" placeholder="descreva a tarefa" required
+                value="<?php echo isset($view_descricaoEvento) ? $view_descricaoEvento: '' ; ?>">
+            </div> 
+           </div>
+
 
           <div class="row">
             <div class="col-md-12">
@@ -230,11 +263,10 @@
         <?php echo form_close(); ?>
         </div>    
         </form>
-		  </div>
+      </div>
 
       </div>
     </div>
   </div><!-- /.modal -->
-
 
 </html>

@@ -97,21 +97,24 @@
     <form action="" method="post" ENCTYPE="multipart/form-data">
       <div class="row">
         <div class="form-group col-md-5">
-            <label for="rnome">Nome do Representante</label> <input type="text" class="form-control" id="rnome" name="rnome"
-                placeholder="informe o nome do representante"
+            <label for="rnome">Nome do Representante</label> 
+            <input type="text" class="form-control" id="rnome" name="rnome"
+                placeholder="informe o nome do representante" required
                 value="<?php echo isset($view_rnome) ? $view_rnome: '' ; ?>">
         </div>     
         <div class="form-group col-md-5">
-            <label for="email">email</label> <input type="text" class="form-control" id="email" name="email"
-                placeholder="informe o email do representantes"
+            <label for="email">email</label> 
+            <input type="text" class="form-control" id="email" name="email"
+                placeholder="informe o email do representantes" required
                 value="<?php echo isset($view_email) ? $view_email: '' ; ?>">
         </div>
     </div>
 
     <div class="row">
         <div class="form-group col-md-5">
-            <label for="fone">Fone</label> <input type="text" class="form-control" id="fone" name="fone"
-                placeholder="informe o telefone do representante"
+            <label for="fone">Fone</label> 
+            <input type="text" class="form-control" id="fone" name="fone"
+                placeholder="informe o telefone do representante" required
                 value="<?php echo isset($view_fone) ? $view_fone: '' ; ?>">
         </div>     
     </div>

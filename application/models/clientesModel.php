@@ -172,7 +172,7 @@ class clientesModel extends CI_Model {
 			$this->db->join('representantes', 'representantes.rcod = clientes.representante');
 			$this->db->like('cnome', $termo1);
 			$this->db->like('cidade', $termo2);
-			$this->db->like('rnome', $termo2);
+			$this->db->like('rnome', $termo3);
 			$query = $this->db->get();
 			return $query->result();
 		}

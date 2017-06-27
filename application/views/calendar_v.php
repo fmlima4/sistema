@@ -152,35 +152,46 @@ $(function(){
         <form action="" method="post" ENCTYPE="multipart/form-data">
           <div class="row">
             <div class="form-group col-md-6">
-                <label for="nomeEvento">Nome Cliente</label> <input type="text" class="form-control" id="nomeEvento" name="nomeEvento" placeholder="informe o nome do cliente"
+                <label for="nomeEvento">Nome Cliente</label> <input type="text" class="form-control" id="nomeEvento" name="nomeEvento" placeholder="informe o nome do cliente" required
                 value="<?php echo isset($view_enome) ? $view_enome: '' ; ?>">
             </div>  
 
             <div class="form-group col-md-6">
-              <label for="user">Responsavel</label> <input type="text" class="form-control" id="user" 
+              <label for="user">Responsavel</label> <input type="text" class="form-control" id="user"  
               name="user" readonly value="<?php echo $_SESSION['usuario_logado']['username']; ?> "/>
             </div>
           </div> 
 
-          <div class="row"> 
+           <div class="row"> 
+            <div class="col-md-6">
+              <label for="inicio">Data</label>
+            </div>
+            <div class="col-md-6">
+              <label for="importancia">Prioridade</label>
+            </div>
             <div class="form-group col-md-6">
               <div class="input-group date">
-                <input type="text" class="form-control date" id="inicio" name="inicio" placeholder="Data de inicio"
-                    value="<?php echo isset($view_inicio) ? $view_inicio: '' ; ?>">
+                <input type="text" class="form-control date" id="inicio" name="inicio" 
+                placeholder="Data de inicio" required
+                value="<?php echo isset($view_inicio) ? $view_inicio: '' ; ?>">
                 <div class="input-group-addon">
                   <span class="glyphicon glyphicon-th"></span>
                 </div>
               </div>
             </div>
             <div class="form-group col-md-6">
-                <label for="importancia">Prioridade</label> <input type="text" class="form-control" id="importancia" name="importancia" placeholder="informe a prioridade" value="<?php echo isset($view_importancia) ? $view_importancia: '' ; ?>">
+                 <input type="text" class="form-control" id="importancia" name="importancia" 
+                 placeholder="informe a prioridade"  required
+                 value="<?php echo isset($view_importancia) ? $view_importancia: '' ; ?>">
             </div>
           </div>
 
            <div class="row"> 
             <div class="form-group col-md-12">
-              <label for="descricaoEvento">Descrição</label> <input type="text" class="form-control" id="descricaoEvento" name="descricaoEvento" placeholder="descreva a tarefa"
-                value="<?php echo isset($view_descricaoEvento) ? $view_descricaoEvento: '' ; ?>">
+              <label for="descricaoEvento">Descrição</label> 
+                <input type="text" class="form-control" 
+                  id="descricaoEvento" name="descricaoEvento" placeholder="descreva a tarefa" required
+                  value="<?php echo isset($view_descricaoEvento) ? $view_descricaoEvento: '' ; ?>">
             </div> 
            </div>
 

@@ -158,7 +158,7 @@
           <div class="row">
             <div class="form-group col-md-6">
                 <label for="nomeEvento">Nome Cliente</label> 
-                <input type="text" class="form-control" id="nomeEvento" name="nomeEvento" placeholder="informe o nome do cliente"
+                <input type="text" class="form-control" id="nomeEvento" name="nomeEvento" placeholder="informe o nome do cliente" required
                 value="<?php echo isset($view_enome) ? $view_enome: '' ; ?>">
             </div>  
 
@@ -170,25 +170,32 @@
           </div> 
 
           <div class="row"> 
+            <div class="col-md-6">
+              <label for="inicio">Data</label>
+            </div>
+            <div class="col-md-6">
+              <label for="importancia">Prioridade</label>
+            </div>
             <div class="form-group col-md-6">
               <div class="input-group date">
-                <input type="text" class="form-control date" id="inicio" name="inicio" placeholder="Data de inicio"
-                    value="<?php echo isset($view_inicio) ? $view_inicio: '' ; ?>">
-                <div class="input-group-addon">
+                <input type="text" class="form-control date" id="inicio" name="inicio" required
+                 placeholder="Data de inicio" value="<?php echo isset($view_inicio) ? $view_inicio: '' ; ?>">
+                <div class="input-group-addon"> 
                   <span class="glyphicon glyphicon-th"></span>
                 </div>
               </div>
             </div>
             <div class="form-group col-md-6">
-                <label for="importancia">Prioridade</label> 
-                <input type="text" class="form-control" id="importancia" name="importancia" placeholder="informe a prioridade" value="<?php echo isset($view_importancia) ? $view_importancia: '' ; ?>">
+                 <input type="text" class="form-control" id="importancia" name="importancia" required
+                  placeholder="informe a prioridade" 
+                  value="<?php echo isset($view_importancia) ? $view_importancia: '' ; ?>">
             </div>
           </div>
 
            <div class="row"> 
             <div class="form-group col-md-12">
               <label for="descricaoEvento">Descrição</label> 
-              <input type="text" class="form-control" id="descricaoEvento" name="descricaoEvento" placeholder="descreva a tarefa"
+              <input type="text" class="form-control" id="descricaoEvento" name="descricaoEvento" placeholder="descreva a tarefa" required
                 value="<?php echo isset($view_descricaoEvento) ? $view_descricaoEvento: '' ; ?>">
             </div> 
            </div>
@@ -227,13 +234,13 @@
         <div class="form-group col-md-5">
             <label for="cnome">Nome da empresa</label> 
             <input type="text" class="form-control" id="cnome" name="cnome"
-                placeholder="informe o nome da empresa"
+                placeholder="informe o nome da empresa" required
                 value="<?php echo isset($view_cnome) ? $view_cnome: '' ; ?>">
         </div>     
         <div class="form-group col-md-5">
             <label for="nome">Pessoa de contato</label> 
             <input type="text" class="form-control" id="contato" name="contato"
-                placeholder="informe o nome do contato"
+                placeholder="informe o nome do contato" required
                 value="<?php echo isset($view_contato) ? $view_contato: '' ; ?>">
         </div>
     </div>
@@ -243,13 +250,13 @@
         <div class="form-group col-md-5">
             <label for="nome">Telefone</label> 
             <input type="text" class="form-control" id="telefone" name="telefone"
-                placeholder="informe o telefone"
+                placeholder="informe o telefone" required
                 value="<?php echo isset($view_telefone) ? $view_telefone: '' ; ?>">
         </div>
         <div class="form-group col-md-5">
             <label for="emailc">Email</label> 
             <input type="text" class="form-control" id="emailc" name="emailc"
-                placeholder="informe um email valido"
+                placeholder="informe um email valido" required
                 value="<?php echo isset($view_emailc) ? $view_emailc : '' ; ?>">
         </div>
     </div>
@@ -258,13 +265,13 @@
         <div class="form-group col-md-5">
             <label for="cidade">Cidade</label> 
             <input type="text" class="form-control" id="cidade" name="cidade"
-                placeholder="informe uma cidade"
+                placeholder="informe uma cidade" required
                 value="<?php echo isset($view_cidade) ? $view_cidade : '' ; ?>">
         </div>
         <div class="form-group col-md-5">
             <label for="representante">Representante</label> 
             <input type="text" class="form-control" id="representante" name="nameR"
-                placeholder="informe representante"
+                placeholder="informe representante" required
                 value="<?php echo isset($view_representante) ? $view_representante : '' ; ?>">
         </div>
     </div>

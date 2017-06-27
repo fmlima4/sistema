@@ -161,29 +161,7 @@ class Produtos extends CI_Controller {
 		
 		$data['pagination'] = "";
 
-		$this->load->library('PHPExcel');
-		$arquivo = './planilhas/relatorio.xlsx';
-		$planilha = $this->phpexcel;
-
-		$planilha->setActiveSheetIndex(0)->setCellValue('A1','Codigo');
-		$planilha->setActiveSheetIndex(0)->setCellValue('B1','Nome');
-		$planilha->setActiveSheetIndex(0)->setCellValue('C1','Descrição');
-
 		$data['produtos'] = $this->model->search();
-
-		$contator = 1;
-
-		foreach($data['produtos'] as $linha) {
-			$contator++;
-			$planilha->setActiveSheetIndex(0)->setCellValue('A'.$contator, $linha->pnome);
-			$planilha->setActiveSheetIndex(0)->setCellValue('B'.$contator, $linha->descricao);
-			$planilha->setActiveSheetIndex(0)->setCellValue('C'.$contator, $linha->pcod);
-		}
-
-		$planilha->getActiveSheet()->setTitle('planilha 1'.$contator);
-
-		$objgravar = PHPExcel_IOFactory::createWriter($planilha, 'Excel2007');
-		$objgravar->save($arquivo);
 		
 		$this->template->load('layout', 'produtos_lista.phtml', $data);
 
