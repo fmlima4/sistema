@@ -114,10 +114,6 @@
 			<div class="col-sm-2">
 				<a data-toggle="modal" data-target="#new_orcamento" class="btn btn-primary btn-sm ">Novo Orçamento</a>
 			</div>
-
-			<div class="col-sm-1">
-    			<a title="orçamentos" class="btn btn-primary btn-sm  fa fa-calendar" data-toggle="modal" data-target="#new_event"></a>
- 			</div>
       
 		</div>
 	</form>
@@ -148,7 +144,7 @@
 							<td><?php echo $orcamento->pnome; ?></td>
 							<td><?php echo $orcamento->orcdat; ?></td>
 							<td><?php echo $orcamento->situacao; ?></td>
-							<td><?php echo $orcamento->valor; ?></td>
+							<td><?php echo 'R$ '.number_format($orcamento->valor,0,",",".");  ?></td>
 							<td><?php echo $orcamento->numero; ?></td>
               <td><?php echo $orcamento->rnome; ?></td>
 							<td class="actions">
@@ -169,12 +165,12 @@
             <th></th>  
             <th> </th>  
             <th> </th>  
-            <th> <?php  echo $total;  ?> </th>  
+            <th> <?php  echo  'R$ '.number_format($total,0,",","."); ?> </th>  
           </tr>
         </tfoot>
 			</table>
 
-			<h3><?php echo $this->session->flashdata('mensagem');?></h3>
+			<h4><?php echo $this->session->flashdata('mensagem');?></h4>
 		
 		</div>
 	</div>
@@ -199,64 +195,73 @@
       <div class="modal-header  bg-red"">
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="modalLabel">Adicionar Orçamento</h4>
-       </div>
+      </div>
 
       <div class="modal-body">
         <?php echo form_open('orcamentos/inserir', 'id="form-orcamentos"'); ?>
-          <form action="" method="GET" ENCTYPE="multipart/form-data">
+          <form action="" method="post" ENCTYPE="multipart/form-data">
             <div class="row">
-              <div class="form-group col-md-5">
-                  <label for="cliente">Nome do cliente</label> <input type="text" class="form-control" id="cliente" name="nomeC" required placeholder="informe o nome da empresa/cliente"
-                      value="<?php echo isset($view_cliente) ? $view_cliente: '' ; ?>">
+              <div class="form-group col-md-6">
+                  <label for="cliente">Nome do cliente</label> 
+                  <input type="text" class="form-control" id="cliente" name="nomeC" required 
+                    placeholder="informe o nome da empresa/cliente"
+                    value="<?php echo isset($view_cliente) ? $view_cliente: '' ; ?>">
               </div>     
 
-              <div class="form-group col-md-5">
-                  <label for="produto">Produto</label> <input type="text" class="form-control" id="produto" 
-                  name="nomeP" required placeholder="informe o produto principal"
-                      value="<?php echo isset($view_produto) ? $view_produto: '' ; ?>">
+              <div class="form-group col-md-6">
+                  <label for="produto">Produto</label> 
+                  <input type="text" class="form-control" id="produto" 
+                    name="nomeP" required placeholder="informe o produto principal"
+                    value="<?php echo isset($view_produto) ? $view_produto: '' ; ?>">
               </div>
-          </div>
+            </div>
           
-
            <div class="row">
-               <div class="form-group col-md-5">
-                  <label for="orcdat">Data</label> <input type="text" class="form-control" id="orcdat" name="orcdat"
-                      placeholder="informe a data" required value="<?php echo date('Y-m-d') ; ?>">
-              </div>
-              <div class="form-group col-md-5">
-                  <label for="situacao">Situação</label> <input type="text" class="form-control" id="situacao" name="situacao" placeholder="informe a Situação" required
-                      value="<?php echo isset($view_situacao) ? $view_situacao : '' ; ?>">
+             <div class="form-group col-md-6">
+                <label for="orcdat">Data</label> 
+                <input type="text" class="form-control" id="orcdat" name="orcdat"
+                  placeholder="informe a data" required value="<?php echo date('Y-m-d') ; ?>">
+            </div>
+              <div class="form-group col-md-6">
+                <div class="col-md-2">
+                  <input type="radio" name="situacao" value="Quente" checked> Quente<br>
+                </div>
+                <div class="col-md-2">
+                  <input type="radio" name="situacao" value="Frio"> Frio<br>
+                </div>
+                <div class="col-md-2">
+                  <input type="radio" name="situacao" value="Parado"> Parado<br>
+                </div>
               </div>
           </div>
 
           <div class="row">
-               	<div class="form-group col-md-5">
-                  <label for="valor">Valor</label> <input type="text" class="form-control" id="valor" name="valor"
-                      placeholder="informe o valor" required
-                      value="<?php echo isset($view_valor) ? $view_valor : '' ; ?>">
-             	</div>
+            <div class="form-group col-md-6">
+              <label for="valor">Valor</label> 
+              <input type="text" class="form-control" id="valor" name="valor"
+                placeholder="informe o valor" required
+                value="<?php echo isset($view_valor) ? $view_valor : '' ; ?>">
+            </div>
 
-             	<div class="form-group col-md-5">
-                  	<label for="numero">Numero</label> <input type="text" class="form-control" id="numero" 
-                    name="numero" required placeholder="informe o numero do orçamento"
-                    value="<?php echo isset($view_numero) ? $view_numero : '' ; ?>">
-             		</div>
-              
+            <div class="form-group col-md-6">
+              <label for="numero">Numero do Orçamento</label> 
+              <input type="text" class="form-control" id="numero" 
+                name="numero" required placeholder="informe o numero do orçamento"
+                value="<?php echo isset($view_numero) ? $view_numero : '' ; ?>">
+            </div>   
           </div>
 
 
-              <div class="row">
-              <div class="col-md-12">
-                  <input type="submit" href="http://localhost/sistema/orcamentos/inserir" 
-                  		class="btn btn-primary" name="btsalvar" value="Salvar " /> 
-                      <a data-dismiss="modal" class="btn btn-default">Cancelar</a>
-              </div>
-
+          <div class="row">
+            <div class="col-md-12">
+              <input type="submit" href="http://localhost/sistema/orcamentos/inserir" 
+                class="btn btn-primary" name="btsalvar" value="Salvar " /> 
+                <a data-dismiss="modal" class="btn btn-default">Cancelar</a>
+            </div>
           <?php echo form_close(); ?>
-
-		</div>
-
+          </div>
       </div>
+
     </div>
   </div>
 </div> <!-- /.modal -->
@@ -276,17 +281,19 @@
         <form action="" method="post" ENCTYPE="multipart/form-data">
           <div class="row">
             <div class="form-group col-md-6">
-                <label for="nomeEvento">Nome Cliente</label> <input type="text" class="form-control" id="nomeEvento" name="nomeEvento" placeholder="informe o nome do cliente" required
+                <label for="nomeEvento">Nome Cliente</label> 
+                <input type="text" class="form-control" id="nomeEvento" name="nomeEvento" placeholder="informe o nome do cliente" required
                 value="<?php echo isset($view_enome) ? $view_enome: '' ; ?>">
             </div>  
 
             <div class="form-group col-md-6">
-              <label for="user">Responsavel</label> <input type="text" class="form-control" id="user" 
+              <label for="user">Responsavel</label> 
+              <input type="text" class="form-control" id="user" 
               name="user" readonly value="<?php echo $_SESSION['usuario_logado']['username']; ?> "/>
             </div>
           </div> 
 
-            <div class="row"> 
+          <div class="row"> 
             <div class="col-md-6">
               <label for="inicio">Data</label>
             </div>
@@ -295,23 +302,33 @@
             </div>
             <div class="form-group col-md-6">
               <div class="input-group date">
-                <input type="text" class="form-control date" id="inicio" name="inicio"  required
-                placeholder="Data de inicio" value="<?php echo isset($view_inicio) ? $view_inicio: '' ; ?>">
-                <div class="input-group-addon">
+                <input type="text" class="form-control date" id="inicio" name="inicio" required
+                 placeholder="Data de inicio" value="<?php echo isset($view_inicio) ? $view_inicio: '' ; ?>">
+                <div class="input-group-addon"> 
                   <span class="glyphicon glyphicon-th"></span>
                 </div>
               </div>
             </div>
+
             <div class="form-group col-md-6">
-                 <input type="text" class="form-control" id="importancia" name="importancia" 
-                 required placeholder="informe a prioridade" 
-                 value="<?php echo isset($view_importancia) ? $view_importancia: '' ; ?>">
+              <div class="col-md-2">
+                <input type="radio" name="importancia" value="Alta" checked> Alta<br>
+              </div>
+              <div class="col-md-2">
+                <input type="radio" name="importancia" value="Media"> Media<br>
+              </div>
+              <div class="col-md-2">
+                <input type="radio" name="importancia" value="Baixa"> Baixa<br>
+              </div>
             </div>
+
+
           </div>
 
            <div class="row"> 
             <div class="form-group col-md-12">
-              <label for="descricaoEvento">Descrição</label> <input type="text" class="form-control" id="descricaoEvento" name="descricaoEvento" placeholder="descreva a tarefa" required
+              <label for="descricaoEvento">Descrição</label> 
+              <input type="text" class="form-control" id="descricaoEvento" name="descricaoEvento" placeholder="descreva a tarefa" required
                 value="<?php echo isset($view_descricaoEvento) ? $view_descricaoEvento: '' ; ?>">
             </div> 
            </div>
@@ -326,7 +343,7 @@
         <?php echo form_close(); ?>
         </div>    
         </form>
-		  </div>
+      </div>
 
       </div>
     </div>

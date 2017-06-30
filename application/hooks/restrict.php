@@ -12,7 +12,7 @@ function restrict() {
     //Array gerado pelo seu algotitmo de "login" e gravado na SESSION
     $usuario_logado = $ci->session->userdata('usuario_logado');
     if (in_array($method, $protegidos)) {//Verificando se o método é protegido
-        if ($usuario_logado['cargo']!='adm') {//Verificando se o usuário está logado
+        if ($usuario_logado['cargo']!='admin') {//Verificando se o usuário está logado
             $ci->session->set_flashdata('alert', 'Voçe nao possui privilegios');//Aqui vc tb pode criar um aviso pro usuário saber o motivo do comportamento da aplicação
 ?>
 

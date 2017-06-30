@@ -28,7 +28,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href= "<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- fullCalendar 2.2.5-->
@@ -96,12 +96,15 @@ desired effect
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">
       <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+      <a href="" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
+          <li>
+            <a data-toggle="modal" data-target="#new_event" href="#" data-toggle="control-sidebar"><i class="fa fa-calendar"></i></a>
+          </li>
           <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
             <!-- Menu toggle button -->
@@ -161,6 +164,7 @@ desired effect
               <li class="footer"><a href="#">View all</a></li>
             </ul>
           </li>
+
           <!-- Tasks Menu -->
           <li class="dropdown tasks-menu">
             <!-- Menu Toggle Button -->
@@ -198,14 +202,13 @@ desired effect
             </ul>
           </li>
 
-
           <!-- User Account Menu  -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar -
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <!-- hidden-xs hides the username on small devices so only the image appears. -->
+              hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs"><?php print_r($_SESSION['usuario_logado']['username']); ?> </span>
             </a>
             <ul class="dropdown-menu">
@@ -218,7 +221,7 @@ desired effect
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
-              <!-- Menu Body 
+               Menu Body 
               <li class="user-body">
                 <div class="row">
                   <div class="col-xs-4 text-center">
@@ -233,7 +236,7 @@ desired effect
                 </div>
                /.row 
               </li>
-              <!-- Menu Footer -->
+             Menu Footer -->
               <li class="user-footer">
                 <div class="pull-left">
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
@@ -244,9 +247,6 @@ desired effect
               </li>
             </ul>
           </li>
-
-
-
 
           <!-- Control Sidebar Toggle Button -->
           <li>
@@ -291,13 +291,13 @@ desired effect
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <li class="header">MENU</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="http://localhost/sistema/inicio"><i class="fa fa-line-chart"></i> <span>Inicio</span></a></li>
+        <!-- Optionally, you can add icons to the links 
+        <li><a href="http://localhost/sistema/inicio"><i class="fa fa-line-chart"></i> <span>Inicio</span></a></li>-->
         <li><a href="http://localhost/sistema/clientes"><i class="fa fa-users"></i> <span>Clientes</span></a></li>
         <li><a href="http://localhost/sistema/orcamentos"><i class="fa fa-folder-open"></i> <span>Orcamentos</span></a></li>
-        <li><a href="http://localhost/sistema/comments"><i class="fa fa-folder-open"></i> <span>Historico</span></a></li>
+        <li><a href="http://localhost/sistema/comments"><i class="fa fa-comments-o"></i> <span>Historico</span></a></li>
         <li><a href="http://localhost/sistema/produtos"><i class="fa fa-barcode"></i> <span>Produtos</span></a></li>
-        <li><a href="http://localhost/sistema/representantes"><i class="fa fa-barcode"></i> <span>Representantes</span></a></li>
+        <li><a href="http://localhost/sistema/representantes"><i class="fa fa-handshake-o"></i> <span>Representantes</span></a></li>
         <li><a href="http://localhost/sistema/calendar2"><i class="fa fa-calendar-o"></i> <span>Agenda</span></a>
         </li>
         <li></li>
@@ -312,7 +312,8 @@ desired effect
             <li><a href="#">Log</a></li>
           </ul>
         </li>
-        <li><a href="http://localhost/sistema/login/logout" onclick="return confirm('Deseja sair?')"><i class="fa fa-calendar-o"></i> <span>Sair</span></a>
+        <li><a href="http://localhost/sistema/login/logout" onclick="return confirm('Deseja sair?')">
+        <i class="fa fa-sign-out"></i> <span>Sair</span></a>
       </ul>
 
       <!-- /.sidebar-menu -->
@@ -457,8 +458,6 @@ desired effect
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
 
 <script src="<?php echo base_url("assets/plugins/fullcalendar/fullcalendar.min.js"); ?>"></script>
-
-
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

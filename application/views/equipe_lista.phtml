@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
+<header>
+	
+  <script type="text/javascript">  
+    $(function(){
+        $("#nomeEvento").autocomplete({
+          source: "clientes/get_cliente", // path to the method
+          appendTo: $("#new_event")
+        });
+    }); 
+  </script>
+
+  <script>
+  $(function(){
+      $('.form-control.date').datepicker({
+          format: 'yyyy-mm-dd',
+          language: 'pt-BR',
+          todayHighlight: true
+      });
+   });
+  </script>
+
+</header>
+
 <body>
 
 <div class="row">
@@ -14,14 +37,14 @@
 	</div>
 
 	<div class="col-sm-1">
-		<button class="btn btn-primary " type="submit">Filtrar</button>
+		<button class="btn btn-primary btn-sm " type="submit">Filtrar</button>
 	</div>
 
 		</form>
 	
 	<div class="col-sm-2">
-		<a href="http://localhost/sistema/equipe/inserir" class="btn btn-primary">Cadastrar Usuario</a>
-	</div>
+			<a data-toggle="modal" data-target="#new_user" class="btn btn-primary btn-sm ">Adicionar Usuario</a>
+		</div>
 
 </div>
 
@@ -65,7 +88,141 @@
       </div>
 
     </div>
-
-
 </body>
+
+
+<!-- Modal de inserir-->
+<div class="modal fade" id="new_user" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header  bg-red"">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalLabel">Adicionar Usuario/h4>
+      </div>
+      <div class="modal-body">
+       <?php echo form_open('equipe/inserir', 'id="form-equipe"'); ?>
+		 <form action="" method="post" ENCTYPE="multipart/form-data">
+		      <div class="row">
+		        <div class="form-group col-md-5">
+		            <label for="username">Username</label> <input type="text" class="form-control" id="username" name="username"
+		                placeholder="informe o nome do Usuario"
+		                value="<?php echo isset($view_username) ? $view_username: '' ; ?>">
+		        </div>     
+		        <div class="form-group col-md-5">
+		            <label for="password">Senha</label> <input type="text" class="form-control" id="password" name="password"
+		                placeholder="informe a senha"
+		                value="<?php echo isset($view_password) ? $view_password: '' ; ?>">
+		        </div>
+		    </div>
+
+		        <div class="row">
+		            <div class="form-group col-md-5">
+		                 <label for="cargo">Cargo</label> <input type="text" class="form-control" id="cargo" name="cargo" placeholder="informe a senha" 
+		                 value="<?php echo isset($view_cargo) ? $view_cargo: '' ; ?>">
+		            </div>
+		        </div>
+
+		        <div class="row">
+		        <div class="col-md-12">
+		            <input type="submit" class="btn btn-primary " name="btsalvar" value="Salvar" /> 
+		                <a onClick="history.go(-1)" class="btn btn-default">Cancelar</a>
+		        </div>
+
+    <?php echo form_close(); ?>
+
+		</div>
+
+      </div>
+    </div>
+  </div>
+</div> <!-- /.modal -->
+
+
+
+<!-- Modal de inserir evento -->
+<div class="modal fade" id="new_event" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header  bg-red"">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalLabel">Adicionar evento</h4>
+      </div>
+      <div class="modal-body">
+       
+       <?php echo form_open('calendar2/new_event', 'id="form-events"'); ?>
+        
+        <form action="" method="post" ENCTYPE="multipart/form-data">
+          <div class="row">
+            <div class="form-group col-md-6">
+                <label for="nomeEvento">Nome Cliente</label> 
+                <input type="text" class="form-control" id="nomeEvento" name="nomeEvento" placeholder="informe o nome do cliente" required
+                value="<?php echo isset($view_enome) ? $view_enome: '' ; ?>">
+            </div>  
+
+            <div class="form-group col-md-6">
+              <label for="user">Responsavel</label> 
+              <input type="text" class="form-control" id="user" 
+              name="user" readonly value="<?php echo $_SESSION['usuario_logado']['username']; ?> "/>
+            </div>
+          </div> 
+
+          <div class="row"> 
+            <div class="col-md-6">
+              <label for="inicio">Data</label>
+            </div>
+            <div class="col-md-6">
+              <label for="importancia">Prioridade</label>
+            </div>
+            <div class="form-group col-md-6">
+              <div class="input-group date">
+                <input type="text" class="form-control date" id="inicio" name="inicio" required
+                 placeholder="Data de inicio" value="<?php echo isset($view_inicio) ? $view_inicio: '' ; ?>">
+                <div class="input-group-addon"> 
+                  <span class="glyphicon glyphicon-th"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <div class="col-md-2">
+                <input type="radio" name="importancia" value="Alta" checked> Alta<br>
+              </div>
+              <div class="col-md-2">
+                <input type="radio" name="importancia" value="Media"> Media<br>
+              </div>
+              <div class="col-md-2">
+                <input type="radio" name="importancia" value="Baixa"> Baixa<br>
+              </div>
+            </div>
+
+
+          </div>
+
+           <div class="row"> 
+            <div class="form-group col-md-12">
+              <label for="descricaoEvento">Descrição</label> 
+              <input type="text" class="form-control" id="descricaoEvento" name="descricaoEvento" placeholder="descreva a tarefa" required
+                value="<?php echo isset($view_descricaoEvento) ? $view_descricaoEvento: '' ; ?>">
+            </div> 
+           </div>
+
+
+          <div class="row">
+            <div class="col-md-12">
+                <input href="http://localhost/sistema/calendar2/new_event"  type="submit" class="btn btn-primary" name="btsalvar" value="Salvar" /> 
+                    <a data-dismiss="modal" class="btn btn-default">Cancelar</a>
+            </div>
+
+        <?php echo form_close(); ?>
+        </div>    
+        </form>
+		  </div>
+
+      </div>
+    </div>
+  </div><!-- /.modal -->
+
+
+
+
 </html>

@@ -43,7 +43,7 @@
                                 <div class="form-top-left">
                                     <h3>Login CRM SuperAR</h3>
                                     <p>Informe seu Usuario e senha:</p>
-                                    <h3><?php echo $this->session->flashdata('alert');?></h3>
+                                    <h3 style="color:red;"><?php echo $this->session->flashdata('alert');?></h3>
                                 </div>
                                 <div class="form-top-right">
                                     <i class="fa fa-sign-in"></i>

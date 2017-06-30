@@ -1,14 +1,27 @@
 <head>
-<div class="row" >
-	<div class="col-sm-2">
-		<a data-toggle="modal" data-target="#new_event" class="btn btn-primary">Nova Tarefa</a>
-	</div>
-</div>
+
+  <script type="text/javascript">  
+    $(function(){
+        $("#nomeEvento").autocomplete({
+          source: "clientes/get_cliente", // path to the method
+          appendTo: $("#new_event")
+        });
+    }); 
+  </script>
+
+  <script>
+  $(function(){
+      $('.form-control.date').datepicker({
+          format: 'yyyy-mm-dd',
+          language: 'pt-BR',
+          todayHighlight: true
+      });
+   });
+  </script>
+
 
 
 <script>
-
-
 
 $(document).ready(function() {
 
@@ -180,9 +193,15 @@ $(function(){
               </div>
             </div>
             <div class="form-group col-md-6">
-                 <input type="text" class="form-control" id="importancia" name="importancia" 
-                 placeholder="informe a prioridade"  required
-                 value="<?php echo isset($view_importancia) ? $view_importancia: '' ; ?>">
+              <div class="col-md-2">
+                <input type="radio" name="importancia" value="Alta" checked> Alta<br>
+              </div>
+              <div class="col-md-2">
+                <input type="radio" name="importancia" value="Media"> Media<br>
+              </div>
+              <div class="col-md-2">
+                <input type="radio" name="importancia" value="Baixa"> Baixa<br>
+              </div>
             </div>
           </div>
 

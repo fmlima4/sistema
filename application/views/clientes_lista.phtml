@@ -72,10 +72,6 @@
 		<a title="newCliente" class="btn btn-primary btn-sm " data-toggle="modal" data-target="#new_cliente">Novo Cliente</a>
 	</div>
 
-  <div class="col-sm-1">
-    <a title="orçamentos" class="btn btn-primary btn-sm pull-right  fa fa-calendar" data-toggle="modal" data-target="#new_event"></a>
-  </div>
-
 </div>
 
 
@@ -122,8 +118,8 @@
 				 	<?php } ?>
 				</tbody>
 			</table>
-			 <h3><?php echo $this->session->flashdata('mensagem');?></h3>
-        <h3><?php echo $this->session->flashdata('mensagemErro');?></h3>
+			 <h4><?php echo $this->session->flashdata('mensagem');?></h4>
+        <h4><?php echo $this->session->flashdata('mensagemErro');?></h4>
 		</div>
 	</div>	
 
@@ -185,11 +181,19 @@
                 </div>
               </div>
             </div>
+
             <div class="form-group col-md-6">
-                 <input type="text" class="form-control" id="importancia" name="importancia" required
-                  placeholder="informe a prioridade" 
-                  value="<?php echo isset($view_importancia) ? $view_importancia: '' ; ?>">
+              <div class="col-md-2">
+                <input type="radio" name="importancia" value="Alta" checked> Alta<br>
+              </div>
+              <div class="col-md-2">
+                <input type="radio" name="importancia" value="Media"> Media<br>
+              </div>
+              <div class="col-md-2">
+                <input type="radio" name="importancia" value="Baixa"> Baixa<br>
+              </div>
             </div>
+
           </div>
 
            <div class="row"> 
@@ -255,8 +259,8 @@
         </div>
         <div class="form-group col-md-5">
             <label for="emailc">Email</label> 
-            <input type="text" class="form-control" id="emailc" name="emailc"
-                placeholder="informe um email valido" required
+            <input type="email" class="form-control" id="emailc" name="emailc"
+                placeholder="informe um email valido" required 
                 value="<?php echo isset($view_emailc) ? $view_emailc : '' ; ?>">
         </div>
     </div>

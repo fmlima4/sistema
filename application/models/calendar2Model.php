@@ -10,6 +10,7 @@ class calendar2Model extends CI_Model {
 		$this->db->select('idevento id, inicio start, fim end,descricaoEvento text, user autor,importancia impor ,cnome title');
 		$this->db->from('eventos');
 		$this->db->join('clientes','clientes.ccod = eventos.nomeEvento');
+		$this->db->where('user', $_SESSION['usuario_logado']['username']);
 		return $this->db->get()->result();
 
 	}	

@@ -115,12 +115,12 @@ class Orcamentos extends CI_Controller {
 	 
 		/* Aqui estou definindo as regras de validação do formulário, assim como 
 		   na função inserir do controlador, porém estou mudando a forma de escrita */
-		$this->form_validation->set_rules('nomeC', 'Cliente', 'required');
-		$this->form_validation->set_rules('nomeP', 'Produto', 'required');
+		$this->form_validation->set_rules('clienteNome', 'Cliente', 'required');
+		$this->form_validation->set_rules('produtoNome', 'Produto', 'required');
 		$this->form_validation->set_rules('orcdat', 'Data', 'required');
 		$this->form_validation->set_rules('situacao', 'Situação', 'required');
 		$this->form_validation->set_rules('valor', 'Valor', 'required');
-	
+		$this->form_validation->set_rules('numero', 'Numero', 'required');
 			
 		/* Executa a validação e caso houver erro chama a função editar do controlador novamente */
 		if ($this->form_validation->run() === FALSE) {
@@ -128,8 +128,8 @@ class Orcamentos extends CI_Controller {
 		} else 
 			/* Senão obtém os dados do formulário */
 			$data['ocod'] = $this->input->post('ocod');
-			$data['cliente'] = $this->input->post('nomeC');
-			$data['produto'] = $this->input->post('pnomeP');
+			$data['cliente'] = $this->input->post('cliente');
+			$data['produto'] = $this->input->post('produto');
 			$data['orcdat'] = $this->input->post('orcdat');
 			$data['situacao'] = $this->input->post('situacao');
 			$data['valor'] = $this->input->post('valor');
