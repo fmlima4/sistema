@@ -57,7 +57,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     });
 
 </script>
-
+  
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -105,9 +105,9 @@ desired effect
           <li>
             <a data-toggle="modal" data-target="#new_event" href="#" data-toggle="control-sidebar"><i class="fa fa-calendar"></i></a>
           </li>
-          <!-- Messages: style can be found in dropdown.less-->
+          <!-- Messages: style can be found in dropdown.less
           <li class="dropdown messages-menu">
-            <!-- Menu toggle button -->
+            <!-- Menu toggle button 
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
               <span class="label label-success">4</span>
@@ -115,35 +115,35 @@ desired effect
             <ul class="dropdown-menu">
               <li class="header">You have 4 messages</li>
               <li>
-                <!-- inner menu: contains the messages -->
+                <!-- inner menu: contains the messages 
                 <ul class="menu">
-                  <li><!-- start message -->
+                  <li><!-- start message 
                     <a href="#">
                       <div class="pull-left">
                         <!-- User Image -->
-                        <!-- <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"> -->
+                        <!-- <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"> 
                       </div>
-                      <!-- Message title and timestamp -->
+                      <!-- Message title and timestamp -
                       <h4>
                         Support Team
                         <small><i class="fa fa-clock-o"></i> 5 mins</small>
                       </h4>
-                      <!-- The message -->
+                      <!-- The message 
                       <p>Why not buy a new awesome theme?</p>
                     </a>
                   </li>
-                  <!-- end message -->
+                  <!-- end message 
                 </ul>
-                <!-- /.menu -->
+                <!-- /.menu 
               </li>
               <li class="footer"><a href="#">See All Messages</a></li>
             </ul>
           </li>
           <!-- /.messages-menu -->
 
-          <!-- Notifications Menu -->
+          <!-- Notifications Menu 
           <li class="dropdown notifications-menu">
-            <!-- Menu toggle button -->
+            <!-- Menu toggle button 
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
               <span class="label label-warning">10</span>
@@ -151,29 +151,29 @@ desired effect
             <ul class="dropdown-menu">
               <li class="header">You have 10 notifications</li>
               <li>
-                <!-- Inner Menu: contains the notifications -->
+                <!-- Inner Menu: contains the notifications 
                 <ul class="menu">
-                  <li><!-- start notification -->
+                  <li><!-- start notification 
                     <a href="#">
                       <i class="fa fa-users text-aqua"></i> 5 new members joined today
                     </a>
                   </li>
-                  <!-- end notification -->
+                  <!-- end notification 
                 </ul>
               </li>
               <li class="footer"><a href="#">View all</a></li>
             </ul>
-          </li>
+          </li> -->
 
           <!-- Tasks Menu -->
           <li class="dropdown tasks-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
+              <span class="label label-danger"></span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
+              <li class="header"></li>
               <li>
                 <!-- Inner menu: contains the tasks -->
                 <ul class="menu">
@@ -181,23 +181,15 @@ desired effect
                     <a href="#">
                       <!-- Task title and progress text -->
                       <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
+                        Você tem X tarefas atrasadas
                       </h3>
-                      <!-- The progress bar -->
-                      <div class="progress xs">
-                        <!-- Change the css width attribute to simulate progress -->
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
                     </a>
                   </li>
                   <!-- end task item -->
                 </ul>
               </li>
               <li class="footer">
-                <a href="#">View all tasks</a>
+                <a href="http://localhost/sistema/calendar2/get_late_events">Ver tarefas...</a>
               </li>
             </ul>
           </li>
@@ -209,7 +201,7 @@ desired effect
               <!-- The user image in the navbar -
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
               hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs"><?php print_r($_SESSION['usuario_logado']['username']); ?> </span>
+              <span class="hidden-xs"><?php print_r (ucwords(($_SESSION['usuario_logado']['username']))); ?> </span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu  
@@ -300,7 +292,7 @@ desired effect
         <li><a href="http://localhost/sistema/representantes"><i class="fa fa-handshake-o"></i> <span>Representantes</span></a></li>
         <li><a href="http://localhost/sistema/calendar2"><i class="fa fa-calendar-o"></i> <span>Agenda</span></a>
         </li>
-        <li></li>
+    
         <li class="treeview">
           <a href="http://localhost/sistema/equipe"><i class="fa fa-male"></i> <span>Equipe</span>
             <span class="pull-right-container">
@@ -312,6 +304,7 @@ desired effect
             <li><a href="#">Log</a></li>
           </ul>
         </li>
+        
         <li><a href="http://localhost/sistema/login/logout" onclick="return confirm('Deseja sair?')">
         <i class="fa fa-sign-out"></i> <span>Sair</span></a>
       </ul>

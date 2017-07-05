@@ -45,7 +45,6 @@
 
 <body>
 
-
 	<form action="/sistema/orcamentos/pesquisar1" method="post">
 		<div class="row">
 			<div class="col-sm-3">
@@ -161,11 +160,11 @@
         <tfoot>
           <tr>
             <th>Valor Total: </th>    
-            <th> </th>  
             <th></th>  
-            <th> </th>  
-            <th> </th>  
-            <th> <?php  echo  'R$ '.number_format($total,0,",","."); ?> </th>  
+            <th></th>  
+            <th></th>  
+            <th></th>  
+            <th><?php  echo  'R$ '.number_format($total,0,",","."); ?> </th>  
           </tr>
         </tfoot>
 			</table>
@@ -177,20 +176,20 @@
 
 
 	<div class="row">
-      <div class="col-sm-10" >
-        <?php echo $pagination; ?>
-      </div>
-      <div class="col-sm-2" >
-        <a class="btn btn-primary btn-sm" download="relatorio orcamentos.xls" href="#" 
-        onclick="return ExcellentExport.excel(this, 'orcamentos', 'relatorio');">Export to Excel</a>
-      </div>
+    <div class="col-sm-10" >
+      <?php echo $pagination; ?>
+    </div>
+    <div class="col-sm-2" >
+      <a class="btn btn-primary btn-sm" download="relatorio orcamentos.xls" href="#" 
+      onclick="return ExcellentExport.excel(this, 'orcamentos', 'relatorio');">Export to Excel</a>
+    </div>
   </div>
 
 </body>
 
 <!-- Modal de inserir-->
 <div class="modal fade" id="new_orcamento" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
-  <div class="modal-dialog  bg-red"" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header  bg-red"">
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
@@ -198,7 +197,9 @@
       </div>
 
       <div class="modal-body">
+      
         <?php echo form_open('orcamentos/inserir', 'id="form-orcamentos"'); ?>
+
           <form action="" method="post" ENCTYPE="multipart/form-data">
             <div class="row">
               <div class="form-group col-md-6">
@@ -223,13 +224,14 @@
                   placeholder="informe a data" required value="<?php echo date('Y-m-d') ; ?>">
             </div>
               <div class="form-group col-md-6">
-                <div class="col-md-2">
+              <label for="orcdat">Situação</label> </br>
+                <div class="col-md-3">
                   <input type="radio" name="situacao" value="Quente" checked> Quente<br>
                 </div>
                 <div class="col-md-2">
                   <input type="radio" name="situacao" value="Frio"> Frio<br>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <input type="radio" name="situacao" value="Parado"> Parado<br>
                 </div>
               </div>

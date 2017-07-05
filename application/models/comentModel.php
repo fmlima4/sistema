@@ -29,7 +29,7 @@ class comentModel extends CI_Model {
 	    return $this->db->delete('comentarios');
 	}
 
-	function listar($sort = 'comcod', $order = 'asc', $limit =null, $offset = null) {
+	function listar($sort = 'comcod', $order = 'DESC', $limit =null, $offset = null) {
 		$this->db->order_by($sort, $order);
 
 		if($limit){
