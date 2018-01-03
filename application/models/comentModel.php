@@ -37,7 +37,7 @@ class comentModel extends CI_Model {
 			$this->db->limit($limit,$offset);
 		}
 
-		$this->db->select('dat, cliente, texto, comcod, cnome, username');
+		$this->db->select('comentdate, cliente, texto, comcod, cnome, username');
 	    $this->db->from('comentarios');
 	    $this->db->join('clientes', 'clientes.ccod = comentarios.cliente');
 		$this->db->join('users', 'users.id = comentarios.autor');
@@ -56,7 +56,7 @@ class comentModel extends CI_Model {
 		$termo3 = $this->input->post('search3');
 
 		if (empty($termo1 and $termo2 and $termo3)){
-			$this->db->select('comcod,dat, cnome, texto, username');
+			$this->db->select('comcod,comentdate, cnome, texto, username');
 			$this->db->from('comentarios');
 	    	$this->db->join('clientes', 'clientes.ccod = comentarios.cliente');
 			$this->db->join('users', 'users.id = comentarios.autor');
@@ -65,7 +65,7 @@ class comentModel extends CI_Model {
 		}
 
 		if(empty($termo2) and empty($termo3)  and !empty($termo1)){
-			$this->db->select('comcod,dat, cnome, texto, username');
+			$this->db->select('comcod,comentdate, cnome, texto, username');
 			$this->db->from('comentarios');
 	    	$this->db->join('clientes', 'clientes.ccod = comentarios.cliente');
 			$this->db->join('users', 'users.id = comentarios.autor');
@@ -76,7 +76,7 @@ class comentModel extends CI_Model {
 
 		if(empty($termo1) and empty($termo3) and !empty($termo2)){
 		
-			$this->db->select('comcod,dat, cnome, texto, username');
+			$this->db->select('comcod,comentdate, cnome, texto, username');
 			$this->db->from('comentarios');
 	    	$this->db->join('clientes', 'clientes.ccod = comentarios.cliente');
 			$this->db->join('users', 'users.id = comentarios.autor');
@@ -87,7 +87,7 @@ class comentModel extends CI_Model {
 
 		if(empty($termo1) and empty($termo2) and !empty($termo3)){
 			
-			$this->db->select('comcod,dat, cnome, texto, username');
+			$this->db->select('comcod,comentdate, cnome, texto, username');
 			$this->db->from('comentarios');
 	    	$this->db->join('clientes', 'clientes.ccod = comentarios.cliente');
 			$this->db->join('users', 'users.id = comentarios.autor');
@@ -98,7 +98,7 @@ class comentModel extends CI_Model {
 
 		if (!empty($termo1 and $termo2 and $termo3)){
 			
-			$this->db->select('comcod,dat, cnome, texto, username');
+			$this->db->select('comcod,comentdate, cnome, texto, username');
 			$this->db->from('comentarios');
 	    	$this->db->join('clientes', 'clientes.ccod = comentarios.cliente');
 			$this->db->join('users', 'users.id = comentarios.autor');
@@ -111,7 +111,7 @@ class comentModel extends CI_Model {
 
 		if (!empty($termo1 and $termo2) and empty($termo3)){
 			
-			$this->db->select('comcod,dat, cnome, texto, username');
+			$this->db->select('comcod,comentdate, cnome, texto, username');
 			$this->db->from('comentarios');
 	    	$this->db->join('clientes', 'clientes.ccod = comentarios.cliente');
 			$this->db->join('users', 'users.id = comentarios.autor');
@@ -123,7 +123,7 @@ class comentModel extends CI_Model {
 
 		if (!empty($termo1 and $termo3) and empty($termo2)){
 			
-			$this->db->select('comcod,dat, cnome, texto, username');
+			$this->db->select('comcod,comentdate, cnome, texto, username');
 			$this->db->from('comentarios');
 	    	$this->db->join('clientes', 'clientes.ccod = comentarios.cliente');
 			$this->db->join('users', 'users.id = comentarios.autor');
@@ -135,7 +135,7 @@ class comentModel extends CI_Model {
 
 		if (!empty($termo2 and $termo3) and empty($termo1)){
 			
-			$this->db->select('comcod,dat, cnome, texto, username');
+			$this->db->select('comcod,comentdate, cnome, texto, username');
 			$this->db->from('comentarios');
 	    	$this->db->join('clientes', 'clientes.ccod = comentarios.cliente');
 			$this->db->join('users', 'users.id = comentarios.autor');

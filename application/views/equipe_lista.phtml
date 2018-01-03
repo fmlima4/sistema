@@ -56,6 +56,7 @@
 						<th>ID</th>
 						<th>Usuario</th>
 						<th>Cargo</th>						
+            <th>Ativo</th>  
 						<th class="actions">Ações</th>
 					</tr>
 				</thead>
@@ -67,6 +68,10 @@
 							<td><?php echo $usuario->id; ?></td>
 							<td><?php echo $usuario->username; ?></td>    
 							<td><?php echo $usuario->cargo; ?></td> 
+              <td class="form-check">
+                <input type="checkbox" class="form-check-input" id="userativo">
+                <label class="form-check-label" for="userativo"></label>
+              </td>
 							<td class="actions">
 								<a title="Editar" class="btn btn-warning btn-sm fa fa-pencil-square-o" href="<?php echo base_url() . 'equipe/editar/' . $usuario->id; ?>"></a>
 								<a title="Deletar" class="btn btn-danger btn-sm fa fa-trash" href="<?php echo base_url() . 'equipe/deletar/' . $usuario->id; ?>" onclick="return confirm('Confirma a exclusão deste registro?')"></a>

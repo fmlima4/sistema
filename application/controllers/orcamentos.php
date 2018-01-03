@@ -64,7 +64,7 @@ class Orcamentos extends CI_Controller {
 		
 		$this->form_validation->set_rules('nomeC', 'Cliente', 'required');
 		$this->form_validation->set_rules('nomeP', 'Produto', 'required');
-		$this->form_validation->set_rules('orcdat', 'Data', 'required');
+		$this->form_validation->set_rules('orcdate', 'Data', 'required');
 		$this->form_validation->set_rules('situacao', 'Situação', 'required');
 		$this->form_validation->set_rules('valor', 'Valor', 'required');
 	
@@ -79,7 +79,7 @@ class Orcamentos extends CI_Controller {
 			
 			$data['cliente'] = $this->input->post('nomeC');
 			$data['produto'] = $this->input->post('nomeP');
-			$data['orcdat'] = $this->input->post('orcdat');
+			$data['orcdate'] = $this->input->post('orcdate');
 			$data['situacao'] = $this->input->post('situacao');
 			$data['valor'] = $this->input->post('valor');			
 			$data['numero'] = $this->input->post('numero');	
@@ -117,7 +117,7 @@ class Orcamentos extends CI_Controller {
 		   na função inserir do controlador, porém estou mudando a forma de escrita */
 		$this->form_validation->set_rules('clienteNome', 'Cliente', 'required');
 		$this->form_validation->set_rules('produtoNome', 'Produto', 'required');
-		$this->form_validation->set_rules('orcdat', 'Data', 'required');
+		$this->form_validation->set_rules('orcdate', 'Data', 'required');
 		$this->form_validation->set_rules('situacao', 'Situação', 'required');
 		$this->form_validation->set_rules('valor', 'Valor', 'required');
 		$this->form_validation->set_rules('numero', 'Numero', 'required');
@@ -130,7 +130,7 @@ class Orcamentos extends CI_Controller {
 			$data['ocod'] = $this->input->post('ocod');
 			$data['cliente'] = $this->input->post('cliente');
 			$data['produto'] = $this->input->post('produto');
-			$data['orcdat'] = $this->input->post('orcdat');
+			$data['orcdate'] = $this->input->post('orcdate');
 			$data['situacao'] = $this->input->post('situacao');
 			$data['valor'] = $this->input->post('valor');
 			$data['numero'] = $this->input->post('numero');	

@@ -3,7 +3,7 @@ CREATE TABLE representantes (
  rnome varchar(10) NOT NULL,
  email varchar(100) NOT NULL,
  fone int(10) NOT NULL,
- ativo int(10) NOT NULL,
+ ativo int(10) NOT NULL
  );
 
 create table clientes(
@@ -24,7 +24,7 @@ CREATE TABLE users (
  username varchar(10) NOT NULL,
  password varchar(100) NOT NULL,
  cargo varchar(100) NOT NULL,
- int(10) NOT NULL
+ ativo int(10) NOT NULL
  );
 
 
@@ -55,7 +55,7 @@ ativo int(10) NOT NULL,
 ocod int primary key NOT NULL AUTO_INCREMENT,
 CONSTRAINT fk_orcamentos FOREIGN KEY (cliente)references clientes(ccod),
 CONSTRAINT fk_orcamentos1 FOREIGN KEY (produto)references produtos(pcod),
-CONSTRAINT fk_comentario FOREIGN KEY (autor)references users(id)
+CONSTRAINT fk_orcamentos2 FOREIGN KEY (autor)references users(id)
 );
 
 create table eventos(

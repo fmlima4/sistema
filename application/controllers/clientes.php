@@ -170,7 +170,7 @@ class Clientes extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<span>', '</span>');
 	
 		/* Define as regras para validação */
-		$this->form_validation->set_rules('dat', 'Data', 'required|max_length[10]');
+		$this->form_validation->set_rules('comentdate', 'Data', 'required|max_length[10]');
 		$this->form_validation->set_rules('cliente', 'Cliente', 'required|max_length[40]');
 		$this->form_validation->set_rules('texto', 'Texto', 'required|max_length[40]');
 		$this->form_validation->set_rules('autor', 'Autor', 'required|max_length[40]');
@@ -183,7 +183,7 @@ class Clientes extends CI_Controller {
 		} else {
 
 			/* Recebe os dados do formulário (visão) */
-			$data['dat'] = $this->input->post('dat');
+			$data['comentdate'] = $this->input->post('comentdate');
 			$data['cliente'] = $this->input->post('cliente'); 
 			$data['texto'] = $this->input->post('texto');
 			$data['autor'] = $this->input->post('autor');
@@ -221,7 +221,7 @@ class Clientes extends CI_Controller {
 	 
 		/* Aqui estou definindo as regras de validação do formulário, assim como 
 		   na função inserir do controlador, porém estou mudando a forma de escrita */
-		$this->form_validation->set_rules('dat', 'Data', 'required|max_length[10]');
+		$this->form_validation->set_rules('comentdate', 'Data', 'required|max_length[10]');
 		$this->form_validation->set_rules('cliente', 'Cliente', 'required|max_length[40]');
 		$this->form_validation->set_rules('texto', 'Texto', 'required|max_length[40]');
 		$this->form_validation->set_rules('autor', 'Autor', 'required|max_length[40]');
@@ -233,7 +233,7 @@ class Clientes extends CI_Controller {
 		} else 
 			/* Senão obtém os dados do formulário */
 			$data['comcod'] = $this->input->post('comcod');
-			$data['dat'] = $this->input->post('dat');
+			$data['comentdate'] = $this->input->post('comentdate');
 			$data['cliente'] = $this->input->post('cliente');
 			$data['texto'] = $this->input->post('texto');
 			$data['autor'] = $this->input->post('autor');

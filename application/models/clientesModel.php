@@ -87,7 +87,7 @@ class clientesModel extends CI_Model {
 	}
 
 	function history($ccod) {
-		$this->db->select('dat, cliente, texto, comcod, cnome, username');
+		$this->db->select('comentdate, cliente, texto, comcod, cnome, username');
 	 	$this->db->where('cliente', $ccod);
 	    $this->db->from('comentarios');
 	    $this->db->join('clientes', 'clientes.ccod = comentarios.cliente');
