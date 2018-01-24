@@ -93,7 +93,7 @@
 					<?php foreach ( $comentarios_cliente as $comentario) {?>
 						<tr>
 							<td><?php echo $comentario->comcod; ?></td>    
-							<td><?php echo $comentario->dat; ?></td>    
+							<td><?php echo $comentario->comentdate; ?></td>    
 							<td><?php echo $comentario->cnome; ?></td>
 							<td><?php echo $comentario->texto; ?></td>
 							<td><?php echo $comentario->username; ?></td>
@@ -143,7 +143,7 @@
     <form action="" method="GET" ENCTYPE="multipart/form-data">
       <div class="row">
         <div class="form-group col-md-5">
-            <label for="data">Data</label> <input type="text" class="form-control "  id="dat" name="dat"
+            <label for="data">Data</label> <input type="text" class="form-control "  id="comentdate" name="comentdate"
                 placeholder="informe uma data " required
                 value="<?php echo date('d/m/y') ; ?>">
         </div>     

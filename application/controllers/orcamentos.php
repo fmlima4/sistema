@@ -49,7 +49,7 @@ class Orcamentos extends CI_Controller {
 	}
 
 
-	function inserir($ocod) {
+	function inserir() {
 
 		//$nomeCliente = $this->model->nomeCliente($ccod);
 				
@@ -80,9 +80,10 @@ class Orcamentos extends CI_Controller {
 			$data['cliente'] = $this->input->post('nomeC');
 			$data['produto'] = $this->input->post('nomeP');
 			$data['orcdate'] = $this->input->post('orcdate');
-			$data['situacao'] = $this->input->post('situacao');
+			$data['situacao'] = 'teste';
 			$data['valor'] = $this->input->post('valor');			
 			$data['numero'] = $this->input->post('numero');	
+			$data['autor'] = $this->input->post('autor');
 			
 			/* Chama a função inserir do modelo */
 			if ($this->model->inserir($data)) {

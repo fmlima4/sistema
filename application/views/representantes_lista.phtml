@@ -59,6 +59,7 @@
 						<th>Nome</th>
 						<th>Email</th>
 						<th>Fone</th>
+            <th>Ativo</th> 
 						<th class="actions">Ações</th>
 					</tr>
 				</thead>
@@ -71,6 +72,10 @@
 							<td><?php echo $representante->rnome; ?></td>    
 							<td><?php echo $representante->email; ?></td>
 							<td><?php echo $representante->fone; ?></td>
+              <td class="form-check">
+                <input type="checkbox" class="form-check-input" id="userativo">
+                <label class="form-check-label" for="userativo"></label>
+              </td>
 							<td class="actions">
 								<a title="Editar" class="btn btn-warning btn-sm fa fa-pencil-square-o" href="<?php echo base_url() . 'representantes/editar/' . $representante->rcod; ?>"></a>
 								<a title="Deletar" class="btn btn-danger btn-sm fa fa-trash" href="<?php echo base_url() . 'representantes/deletar/' . $representante->rcod; ?>" onclick="return confirm('Confirma a exclusão deste registro?')"></a>

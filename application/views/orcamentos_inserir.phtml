@@ -16,7 +16,7 @@
 
 <body>
     <?php echo form_open('orcamentos/inserir', 'id="form-orcamentos"'); ?>
-    
+
     <?php
         $r = $_SERVER['REQUEST_URI']; 
         $r = explode('/', $r);
@@ -26,27 +26,28 @@
         $endofurl = $r[3];
     ?>
 
-    <form action="" method="post" ENCTYPE="multipart/form-data">
-      <div class="row">
-       <div class="form-group col-md-5">
-            <label for="cliente">Codigo Cliente</label> <input type="text" class="form-control" id="cliente" name="nomeC" readonly  value="<?php echo $endofurl; ?>">
-        </div>   
-        <div class="form-group col-md-5">
-            <label for="autor_show">Autor</label> <input type="text" class="form-control" id="autor_show" 
-            name="autor_show" readonly
-            value="<?php echo $_SESSION['usuario_logado']['username']; ?> "/>
-        </div> 
-       
-    </div>
+          <form action="" method="post" ENCTYPE="multipart/form-data">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="cliente">Codigo Cliente</label> <input type="text" class="form-control" id="cliente" name="nomeC" readonly  value="<?php echo $endofurl; ?>">
+            </div>   
 
-     <div class="row">
-         <div class="form-group col-md-5">
-            <label for="orcdat">Data</label> <input type="text" class="form-control" id="orcdat" name="orcdat"
-                placeholder="informe a data"
-                value="<?php echo date('Y-m-d') ; ?>">
-        </div>
-        <div class="form-group col-md-5">
-            <label for="situacao">Situação</label></br>
+              <div class="form-group col-md-6">
+                  <label for="produto">Produto</label> 
+                  <input type="text" class="form-control" id="produto" 
+                    name="nomeP" required placeholder="informe o produto principal"
+                    value="<?php echo isset($view_produto) ? $view_produto: '' ; ?>">
+              </div>
+            </div>
+          
+           <div class="row">
+             <div class="form-group col-md-6">
+                <label for="orcdat">Data</label> 
+                <input type="text" class="form-control" id="orcdate" name="orcdate"
+                  placeholder="informe a data" required value="<?php echo date('Y-m-d') ; ?>">
+            </div>
+              <div class="form-group col-md-6">
+              <label for="orcdat">Situação</label> </br>
                 <div class="col-md-3">
                   <input type="radio" name="situacao" value="Quente" checked> Quente<br>
                 </div>
@@ -56,36 +57,43 @@
                 <div class="col-md-3">
                   <input type="radio" name="situacao" value="Parado"> Parado<br>
                 </div>
-        </div>
-    </div>
+              </div>
+          </div>
 
-    <div class="row">
-        <div class="form-group col-md-5">
-            <label for="produto">Produto</label> <input type="text" class="form-control" id="produto" name="nomeP"
-                placeholder="informe o produto principal"
-                value="<?php echo isset($view_produto) ? $view_produto: '' ; ?>">
-        </div>
-        <div class="form-group col-md-5">
-            <label for="valor">Valor</label> <input type="text" class="form-control" id="valor" name="valor"
-                placeholder="informe o valor"
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="valor">Valor</label> 
+              <input type="text" class="form-control" id="valor" name="valor"
+                placeholder="informe o valor" required
                 value="<?php echo isset($view_valor) ? $view_valor : '' ; ?>">
-        </div>
-    </div>
+            </div>
 
-    <div class="row">
-        <div class="form-group col-md-5">
-            <label for="numero">Numero</label> <input type="text" class="form-control" id="numero" name="numero"
-                placeholder="informe o numero do orçamento"
-                value="<?php echo isset($view_numero) ? $view_numero: '' ; ?>">
-        </div>
-    </div>
+            <div class="form-group col-md-6">
+              <label for="numero">Numero do Orçamento</label> 
+              <input type="text" class="form-control" id="numero" 
+                name="numero" required placeholder="informe o numero do orçamento"
+                value="<?php echo isset($view_numero) ? $view_numero : '' ; ?>">
+            </div>   
+          </div>
 
-        <div class="row">
-        <div class="col-md-12">
-            <input type="submit" class="btn btn-primary" name="btsalvar" value="Salvar" /> 
-                <a onClick="history.go(-1)" class="btn btn-default">Cancelar</a>
-        </div>
-
-    <?php echo form_close(); ?>
+          <div class="row">
+            <div class="form-group col-md-5">
+            <label for="autor_show">Autor</label> <input type="text" class="form-control" id="autor_show" 
+            name="autor_show" readonly
+            value="<?php echo $_SESSION['usuario_logado']['username']; ?> "/>
+            </div>
+        
+            <div>
+              <input type="hidden" name="autor" value="<?php echo $_SESSION['usuario_logado']['id'];  ?>"/>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-12">
+              <input type="submit" href="http://localhost/sistema/orcamentos/inserir" 
+                class="btn btn-primary" name="btsalvar" value="Salvar " /> 
+                <a data-dismiss="modal" class="btn btn-default">Cancelar</a>
+            </div>
+          <?php echo form_close(); ?>
 </body>
 </html>
